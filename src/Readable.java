@@ -42,7 +42,7 @@ public class Readable extends Item {
 	            java.lang.String str;
 	            while((str = in.readLine()) != null){
 	            	ar = str.split(",");
-	            	System.out.print(1 + " " + ar[1] + " " + ar[2] + " " + ar[3] + " " + ar[4]);
+	            	System.out.print(ar[0] + " " + ar[1] + " " + ar[2] + " " + ar[3] + " " + ar[4]);
 	            	System.out.println();
 	            }
 	            in.close();
