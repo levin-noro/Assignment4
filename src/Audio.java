@@ -10,8 +10,7 @@ public class Audio extends Item {
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(filename));
 	        java.lang.String str;
-	        str = in.readLine();
-	        while (str != null){
+	        while ((str = in.readLine()) != null){
 	        	ar = str.split(",");
 	        	if (Integer.parseInt(ar[0]) == serial) {
 	        		
@@ -37,6 +36,27 @@ public class Audio extends Item {
 		return ar.toString();
 	} //Returns sNo, Name, Author name, etc. in a string
 	
+	@Override
+	public double getPrice(String serial, String filename) { // override to get the item price and add 2% environment tax
+	// check how info is going to be provided
+		double priceWithTax = 0;
+		try {
+			java.lang.String[] ar = {};
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            java.lang.String str;
+            while((str = in.readLine()) != null){
+            	ar = str.split(",");
+            	if(ar[0].equals(serial)){
+            		priceWithTax = 0.00;
+            	}
+            }
+            in.close();
+	    } 
+		catch (IOException e) {
+            System.out.println("File Read Error");
+        } 
+		return priceWithTax;	
+	}
 	
 	
 	public void getListInfo(String filename){ 		//changed the return type from int to string and ask prof

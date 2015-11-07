@@ -41,7 +41,26 @@ public class Readable extends Item {
 			return ar.toString();
 		} //Returns sNo, Name, Author name, etc. in a string
 		
-		
+		@Override
+		public double getPrice(String serial, String filename) { //override 
+			double priceWithTax = 0;
+			try {
+				java.lang.String[] ar = {};
+	            BufferedReader in = new BufferedReader(new FileReader(filename));
+	            java.lang.String str;
+	            while((str = in.readLine()) != null){
+	            	ar = str.split(",");
+	            	if(ar[0].equals(serial)){
+	            		priceWithTax = 0.00;
+	            	}
+	            }
+	            in.close();
+		    } 
+			catch (IOException e) {
+	            System.out.println("File Read Error");
+	        } 
+			return priceWithTax;
+		}
 		
 		public void getListInfo(String filename){ 		//changed the return type from int to string and ask prof
 			java.lang.String[] ar = {};
