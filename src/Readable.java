@@ -42,8 +42,8 @@ public class Readable extends Item {
 	            java.lang.String str;
 	            while((str = in.readLine()) != null){
 	            	ar = str.split(",");
-	            	System.out.print(ar[0] + " " + ar[1] + " " + ar[2] + " " + ar[3] + " " + ar[4]);
-	            	System.out.println();
+	            	System.out.print(String.format("%-10s", ar[0])+String.format("%-40s", ar[1])+String.format("%-24s",ar[2])+String.format("%-10s", ar[3])+String.format("%-10s",  ar[4])+String.format("%-16s",  ar[5]));
+	    	        System.out.println();
 	            }
 	            in.close();
 		    } 
@@ -52,9 +52,15 @@ public class Readable extends Item {
 	        } 
 		}
 		
+		public void printListInfo() {
+			System.out.println(String.format("%-10s", "S.No")+	String.format("%-40s", "Name of the Book")+String.format("%-24s", "Author")+String.format("%-10s", "Price")+String.format("%-10s", "Quantity")+String.format("%-16s", "Type"));
+			getListInfo("Books.txt");
+			getListInfo("eBooks.txt");
+		}
+			//this is a comment
+	}
 		//@Override
 		//public int getPrice(...) { //override 
 			
 		//}
 		
-}
