@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Readable extends Item {
 		protected String authorName;
 		
-		public String getInfo(String filename, int serial) {
+		public String[] getInfo(String filename, int serial) {
 			java.lang.String[] ar = {};
 			try {
 	            BufferedReader in = new BufferedReader(new FileReader(filename));

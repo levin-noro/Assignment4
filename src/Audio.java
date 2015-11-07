@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Audio extends Item {
 	protected String artistName;
-	public String getInfo(String filename, int serial) {
+	public String[] getInfo(String filename, int serial) {
 		java.lang.String[] ar = {};
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(filename));
