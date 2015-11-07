@@ -5,7 +5,11 @@ public class HWK4_karskim {
 	
 	public static void main(String args[]) { 
 		Readable x = new Readable();
-		x.getInfo("Books.txt");
-		x.getListInfo("Books.txt");
+//		x.getInfo("Books.txt");
+//		x.getListInfo("Books.txt");
+		x.printListInfo();
+		System.out.println();
+		Audio y = new Audio();
+		y.printListInfo();
 	}
 }

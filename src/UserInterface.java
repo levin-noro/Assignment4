@@ -11,7 +11,13 @@ public class UserInterface{
 			currentPage = page;
 			return currentPage;
 		}
+		//
 		
+		/* UserInterface ui = new UserInterface();
+
+			if(ui.getCurrentPage() == 1) {
+  			ui.changeCurrentPage(2) */
+
 		public int changeCurrentPage() {// This method is for page navigation. It should change to current page and show the content.
 			Scanner scanner = new Scanner(System.in); 
 			switch (currentPage){
