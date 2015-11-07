@@ -9,21 +9,29 @@ import java.io.IOException;
 public class Readable extends Item {
 		protected String authorName;
 		
-		public String getInfo(String filename, int lineNumber) {
+		public String getInfo(String filename, int serial) {
 			java.lang.String[] ar = {};
 			try {
 	            BufferedReader in = new BufferedReader(new FileReader(filename));
 	            java.lang.String str;
 	            
-	            for(int cntr = 1; (str = in.readLine()) != null; cntr++){
-	            	if(cntr == lineNumber){
-		            	//System.out.println(str);
-		            	ar = str.split(",");
-		            	authorName = ar[2];
+	            while ((str = in.readLine()) != null){
+		        	ar = str.split(",");
+		        	if (Integer.parseInt(ar[0]) == serial) {
+		        		
+		        		super.sNo = Integer.parseInt(ar[0]);
+		        		super.title = ar[1];
+		        		authorName = ar[2];
+		        		super.price = Integer.parseInt(ar[3]);
+		        		super.quantity = Integer.parseInt(ar[4]);
+		        		super.itemtype = ar[5];
+		            	
+		        		//System.out.println(str);
+		            	
 		            	//System.out.println(authorName);
 		            	break;
-	            	}
-	            }
+		        	}
+		        }
 	            in.close();
 		    } 
 			catch (IOException e) {

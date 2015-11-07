@@ -5,17 +5,25 @@ import java.io.IOException;
 
 public class Audio extends Item {
 	protected String artistName;
-	public String getInfo(String filename, int lineNumber) {
+	public String getInfo(String filename, int serial) {
 		java.lang.String[] ar = {};
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(filename));
 	        java.lang.String str;
-	        
-	        for(int cntr = 1; (str = in.readLine()) != null; cntr++){
-	        	if(cntr == lineNumber){
-	            	//System.out.println(str);
-	            	ar = str.split(",");
-	            	artistName = ar[2];
+	        str = in.readLine();
+	        while (str != null){
+	        	ar = str.split(",");
+	        	if (Integer.parseInt(ar[0]) == serial) {
+	        		
+	        		super.sNo = Integer.parseInt(ar[0]);
+	        		super.title = ar[1];
+	        		artistName = ar[2];
+	        		super.price = Integer.parseInt(ar[3]);
+	        		super.quantity = Integer.parseInt(ar[4]);
+	        		super.itemtype = ar[5];
+	            	
+	        		//System.out.println(str);
+	            	
 	            	//System.out.println(authorName);
 	            	break;
 	        	}

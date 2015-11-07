@@ -4,7 +4,7 @@ public abstract class Item{
 		//public abstract int getPrice(...);
 		
 		protected int sNo;
-		protected String artist;
+		protected String title;
 		protected int price;
 		protected int quantity;
 		protected String itemtype;
