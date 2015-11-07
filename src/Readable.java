@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Readable extends Item {
 		protected String authorName;
 		
-		public String getInfo(String filename, int lineNumber) {
+		public String[] getInfo(String filename, int lineNumber) {					//changed to return type array of strings
 			java.lang.String[] ar = {};
 			try {
 	            BufferedReader in = new BufferedReader(new FileReader(filename));
@@ -30,14 +30,14 @@ public class Readable extends Item {
 	            System.out.println("File Read Error");
 	        } 
 			//System.out.println(ar[1]);
-			return ar.toString();
+			return ar;
 		} //Returns sNo, Name, Author name, etc. in a string
 		
 		
 		
 		public void getListInfo(String filename){ 		//changed the return type from int to string and ask prof
-			java.lang.String[] ar = {};
 			try {
+				java.lang.String[] ar = {};
 	            BufferedReader in = new BufferedReader(new FileReader(filename));
 	            java.lang.String str;
 	            while((str = in.readLine()) != null){

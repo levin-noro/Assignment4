@@ -9,13 +9,29 @@ public class Audio extends Item
 	{
 		protected String artistName;
 		public String getInfo(...){ } // Returns sNo Name, Artist name ,etc in a string
+		
 		@Override
-		public int getPrice(int sNo) { // override to get the item price and add 2% environment tax
+		public double getPrice(String serial, String filename) { // override to get the item price and add 2% environment tax
 		// check how info is going to be provided
-			float price = super.getPrice(int sNo);
-			price = price*1.02;
-			
+			double priceWithTax = 0;
+			try {
+				java.lang.String[] ar = {};
+	            BufferedReader in = new BufferedReader(new FileReader(filename));
+	            java.lang.String str;
+	            while((str = in.readLine()) != null){
+	            	ar = str.split(",");
+	            	if(ar[0].equals(serial)){
+	            		priceWithTax = 0.00;
+	            	}
+	            }
+	            in.close();
+		    } 
+			catch (IOException e) {
+	            System.out.println("File Read Error");
+	        } 
+			return priceWithTax;	
 		}
+		
 		public void getListInfo(String filename) { //Based on the value of Type(eBook or Book) print the list of Items
 		// changed return type to void from int (int was specified in the assignment instructions). Check if this is ok. 
 			try {
