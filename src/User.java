@@ -6,12 +6,14 @@ import java.util.Scanner;
 
 
 public class User {
-	private String username;
+	String username;
 	// create a class constructor that calls username
 	//User (String name) {username = name;} //
+	public User(String name) {this.username = name;}
 	
 	public String getUsername(String name, int option) throws IOException { // stores the username.
 	// usernames of all registered users are stored in the file Users.txt
+		
 		
 		File inFile = new File("Users.txt");
 		
