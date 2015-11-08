@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import HWK4_karskim.Item.Readable;
+//import HWK4_karskim.Item.Readable;
 
 public class Book extends Readable {
 		@Override

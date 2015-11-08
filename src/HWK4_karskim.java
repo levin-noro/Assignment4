@@ -11,5 +11,9 @@ public class HWK4_karskim {
 		System.out.println();
 		Audio y = new Audio();
 		y.printListInfo();
+		
+		UserInterface Inter = new UserInterface();
+		Inter.currentPage(1);
+		Inter.changeCurrentPage();
 	}
 }
