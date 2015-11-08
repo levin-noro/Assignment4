@@ -1,10 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class UserInterface{
+		
 		private int currentPage; // the page number (P1...P10)
 		
 		public int currentPage(int page) { // This method is for page navigation. Based on the values of the state variable, call different pages
@@ -12,7 +15,36 @@ public class UserInterface{
 			return currentPage;
 		}
 		
-		public int changeCurrentPage() {// This method is for page navigation. It should change to current page and show the content.
+		public int getCurrentPage() {return currentPage;}
+		
+		public void getReadables() {
+			
+		}
+		
+		public void showReadables() {
+			
+		}
+		
+		public void getAudioProducts() {
+			
+		}
+		
+		public void showAudioProducts() {
+			
+		}
+		
+		
+		
+	
+		
+		//
+		
+		/* UserInterface ui = new UserInterface();
+
+			if(ui.getCurrentPage() == 1) {
+  			ui.changeCurrentPage(2) */
+
+		public int changeCurrentPage() throws IOException {// This method is for page navigation. It should change to current page and show the content.
 			Scanner scanner = new Scanner(System.in); 
 			switch (currentPage){
 		        
@@ -29,9 +61,9 @@ public class UserInterface{
 		        case 2:
 		        	System.out.println("Choose your username:"); System.out.println();
 		        	String newname = scanner.next();
-		        	User newUser = new User(newname);
-		        	User.getUsername(newname); // change
-		        	System.out.println("Username successfully added		P2");
+		        	User newUser = new User();
+		        	newUser.getUsername(newname, 1); // change
+		        	// System.out.println("Username successfully added		P2"); page numbers have to be added to output of getUsername
 		        	scanner.close();
 		            break;
 		        
@@ -40,18 +72,23 @@ public class UserInterface{
 		        	String name = scanner.next();
 		        	scanner.close();
 		        	int found = 0;
-		        	InputStream is = new FileInputStream("Users.txt");
-		        			BufferedReader rd = new BufferedReader(new InputStreamReader(is,"UTF-8"));
-		        			 String line;
-
-		        			 while ( (line = rd.readLine()) != null ){
-		        				 // should we ignore case for usernames?
-		        			     if(line.matches(name)){
-		        			    	 System.out.println("Hello Mr."+name+"		P3");
-		        			    	 found = 1;
-		        			    	 break; 
-		        			     }
-		        			 }
+		        	InputStream is;
+		        	try {
+						is = new FileInputStream("Users.txt");
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+			        String line;
+	
+			        while ( (line = rd.readLine()) != null ){
+			        				 // should we ignore case for usernames?
+			        if(line.matches(name)){
+			        	System.out.println("Hello Mr."+name+"		P3");
+		        		found = 1;
+		        		break;}
+		        	}
 		        			 
 		        	if (found == 0) {
 		        		currentPage(4);
@@ -122,7 +159,9 @@ public class UserInterface{
 		        	if (option == 0) {currentPage(10); changeCurrentPage();}
 		        	
 		        case 8:
-		        	// list available readables 
+		        	Readable r = new Readable();
+		        	r.printListInfo();
+		        	System.out.println();
 		        	System.out.println("Choose your option:");
 		        	int read = Integer.parseInt(scanner.next());
 		        	System.out.println("Enter quantity:");
@@ -130,12 +169,22 @@ public class UserInterface{
 		        	// update quantity variable for this item in eBooks or Books
 		        	// update quantity variable for this item in MP3 or CD
 		        	// get name of option
-		        	System.out.println(readQ + " " + );
+		        	System.out.println(readQ + " " + "name");
 		        	
 		        	
 		        case 9:
 		        	// audio
-		        	System.out.println("Choose your option:"); System.out.println();
+		        	Audio a = new Audio();
+		        	a.printListInfo();
+		        	System.out.println();
+		        	System.out.println("Choose your option:");
+		        	int aud = Integer.parseInt(scanner.next());
+		        	System.out.println("Enter quantity:");
+		        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
+		        	// update quantity variable for this item in eBooks or Books
+		        	// update quantity variable for this item in MP3 or CD
+		        	// get name of option
+		        	System.out.println(audQ + " " + "name");
 		        	
 		        case 10:
 		        	// checkout
