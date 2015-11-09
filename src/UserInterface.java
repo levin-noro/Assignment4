@@ -78,7 +78,7 @@ public class UserInterface{
 				        User newUser = new User(newname);
 					    
 						try {
-							newUser.getUsername(newname, 1);
+							newUser.getUsername(newname, 2);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -92,24 +92,121 @@ public class UserInterface{
 			        case 3:
 			        	System.out.println("Enter your username:"); System.out.println();
 			        	String name = scanner.next();
-			        	scanner.close();
-			        	exitUI = true;
-			        	//User currUser = new User(name);
-			        	/*String userExists = currUser.getUsername(name, 2);
+			        	
+			        	
+			        	User currUser = new User(name);
+						String userExists = null;
+						try {
+							userExists = currUser.getUsername(name, 1);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			        		        		 
 			        	if (userExists == "Hello Mr." + name) {
-			        		currentPage(4);
-			        		changeCurrentPage();
+			        		System.out.println("end");
+			        		//currentPage(4);
+			        		
 			        	}
 			        	else {
-			        		currentPage(1);
-			        		changeCurrentPage();
+			        		// currentPage(1)
+			        		currentPage(4);
+			        		
 			        	}
-			        	*/
+			        	
 			        	break;
 			        	
+			        case 4:
+			        	
+			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \nChoose your option: \n\n ");
+			        	
+			        	switch(Integer.parseInt(scanner.next())) {
+			        	
+			        	case 1:
+			        		currentPage(5);
+			        		
+			        		break;
+			        	
+			        	case 2:
+			        		currentPage(6);
+			        		
+			        		break;
+			        		
+			        	case 3:
+			        		currentPage(1);
+			        		
+			        		break;		        		
+			        	}
+			        	
+			        	break;
+			        	
+			        case 5:
+			        	
+			        	System.out.println("1.Readables");
+			        	System.out.println("2.Audio"); System.out.println();
+			        	System.out.println("Choose your option:"); System.out.println();
+			        	System.out.println("Press -1 to return to the previous menu");
+			        	
+			        	int option = Integer.parseInt(scanner.next());
+			        	
+			        	
+			        	if (option == 1) {currentPage(7);}
+			        	if (option == 2) {currentPage(8);}
+			        	if (option == -1) {currentPage(1);}
+			        	
+			        	break;
+			        	
+			        case 6:
+			        	// view contents of shopping cart. should get method from shoppingcart.java
+			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to checkout.");
+			        	System.out.println("Choose your option:"); System.out.println();
+			        	int op = Integer.parseInt(scanner.next());
+			        	if (op == -1) {currentPage(5);}
+			        	if (op == 0) {currentPage(10);}
+			        	break;
+			        	
+			        case 7:
+			        	Readable r = new Readable();
+			        	r.printListInfo();
+			        	System.out.println();
+			        	System.out.println("Choose your option:");
+			        	
+			        	int read = Integer.parseInt(scanner.next());
+			        	
+			        	if (read == -1) {currentPage(5); break;}
+			        	System.out.println("Enter quantity:");
+			        	int readQ = Integer.parseInt(scanner.next()); System.out.println();
+			        	// update quantity variable for this item in eBooks or Books
+			        	// update quantity variable for this item in MP3 or CD
+			        	// get name of option
+			        	System.out.println(readQ + " " + "name");
+			        	exitUI = true;
+			        	break;
+			        	
+			        	
+			        case 8:
+			        	// audio
+			        	Audio a = new Audio();
+			        	a.printListInfo();
+			        	System.out.println();
+			        	System.out.println("Choose your option:");
 			        
-			            
+			        	int aud = Integer.parseInt(scanner.next());
+			        	if (aud == -1) {currentPage(5); break;}
+			        	System.out.println("Enter quantity:");
+			        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
+			        	// update quantity variable for this item in eBooks or Books
+			        	// update quantity variable for this item in MP3 or CD
+			        	// get name of option
+			        	System.out.println(audQ + " " + "name");
+			        	exitUI = true;
+			        	break;
+			        	
+			        case 10:
+			        	// checkout
+			        	System.out.println("Choose your option:"); System.out.println();
+			        	exitUI = true;
+			        	
 			        default:
 			            System.out.println("Default case");
 			            break;
@@ -173,88 +270,13 @@ public class UserInterface{
 			        	changeCurrentPage();
 			        	break;
 			        	
-case 5:
+
 	
-	System.out.println("1.View Items By Category");
-	System.out.println("2.View Shopping Cart");
-	System.out.println("3.Sign Out"); System.out.println();
+
 	
-	System.out.println("Choose your option:");
-	System.out.println("							P5");
+
 	
-	switch(Integer.parseInt(scanner.next())) {
+
 	
-	case 1:
-		currentPage(6);
-		changeCurrentPage();
-		break;
-	
-	case 2:
-		currentPage(7);
-		changeCurrentPage();
-		break;
-		
-	case 3:
-		currentPage(1);
-		changeCurrentPage();
-		break;		        		
-	}
-	scanner.close();
-	break;
-	
-case 6:
-	
-	System.out.println("1.Readables");
-	System.out.println("2.Audio"); System.out.println();
-	System.out.println("Choose your option:"); System.out.println();
-	System.out.println("Press -1 to return to the previous menu");
-	
-	int option = Integer.parseInt(scanner.next());
-	scanner.close();
-	
-	if (option == 1) {currentPage(6); changeCurrentPage();}
-	if (option == 2) {currentPage(7); changeCurrentPage();}
-	if (option == -1) {currentPage(1); changeCurrentPage();}
-	
-	break;
-	
-case 7:
-	// view contents of shopping cart. should get method from shoppingcart.java
-	System.out.println("Press -1 to go to the previous menu or press 0 to go to checkout.");
-	System.out.println("Choose your option:"); System.out.println();
-	int op = Integer.parseInt(scanner.next());
-	if (op == -1) {currentPage(5); changeCurrentPage();}
-	if (op == 0) {currentPage(10); changeCurrentPage();}
-	
-case 8:
-	Readable r = new Readable();
-	r.printListInfo();
-	System.out.println();
-	System.out.println("Choose your option:");
-	int read = Integer.parseInt(scanner.next());
-	System.out.println("Enter quantity:");
-	int readQ = Integer.parseInt(scanner.next()); System.out.println();
-	// update quantity variable for this item in eBooks or Books
-	// update quantity variable for this item in MP3 or CD
-	// get name of option
-	System.out.println(readQ + " " + "name");
-	
-	
-case 9:
-	// audio
-	Audio a = new Audio();
-	a.printListInfo();
-	System.out.println();
-	System.out.println("Choose your option:");
-	int aud = Integer.parseInt(scanner.next());
-	System.out.println("Enter quantity:");
-	int audQ = Integer.parseInt(scanner.next()); System.out.println();
-	// update quantity variable for this item in eBooks or Books
-	// update quantity variable for this item in MP3 or CD
-	// get name of option
-	System.out.println(audQ + " " + "name");
-	
-case 10:
-	// checkout
-	System.out.println("Choose your option:"); System.out.println();
+
 */
