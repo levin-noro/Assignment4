@@ -140,7 +140,7 @@ public class Audio extends Item {
 		public void printListInfo() {
 			System.out.println(String.format("%-10s", "S.No")+	String.format("%-40s", "Name")+String.format("%-24s", "Artist")+String.format("%-10s", "Price($)")+String.format("%-10s", "Quantity")+String.format("%-16s", "Type"));
 			getListInfo("CDs.txt");
-			getListInfo("MP3s.txt");
+			getListInfo("MP3.txt");
 		}
 			//this is a comment
 	}

@@ -65,16 +65,12 @@ public class UserInterface{
 			        case 2:
 			        	
 			        	System.out.println("Choose your username:\n"); 
-			        	
 			        	String newname = scanner.next();
-			        	System.out.println("Your name is " + newname);
-			        	
-				        System.out.println("Added user.");
 				        User newUser = new User(newname);
 					    
 						try {
 							String newU = newUser.getUsername(newname, 2);
-							System.out.println(newU);
+							System.out.println(newU + "\n");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -96,14 +92,14 @@ public class UserInterface{
 						
 						try {
 							String login = currUser.getUsername(name, 1);
-							System.out.println(login);
+							System.out.println(login + "\n");
 							if (login.equals("Hello Mr." + name)) {
 								currentPage(4);
 							}
 							else if (login.equals("No Access")) {
 								currentPage(1);
 							}
-							else {System.out.println("bananas");}
+							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -114,7 +110,7 @@ public class UserInterface{
 			        	
 			        case 4:
 			        	
-			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \nChoose your option: \n\n ");
+			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \n\nChoose your option: \n\n ");
 			        	
 			        	switch(Integer.parseInt(scanner.next())) {
 			        	
@@ -135,13 +131,9 @@ public class UserInterface{
 			        	
 			        case 5:
 			        	
-			        	System.out.println("1.Readables");
-			        	System.out.println("2.Audio"); System.out.println();
-			        	System.out.println("Choose your option:"); System.out.println();
-			        	System.out.println("Press -1 to return to the previous menu");
+			        	System.out.println("1.Readables \n2.Audio \n\nChoose your option:\n\nPress -1 to return to the previous menu");
 			        	
 			        	int option = Integer.parseInt(scanner.next());
-			        	
 			        	
 			        	if (option == 1) {currentPage(7);}
 			        	if (option == 2) {currentPage(8);}
@@ -196,6 +188,8 @@ public class UserInterface{
 			        	// update quantity variable for this item in MP3 or CD
 			        	
 			        	System.out.println(readQ + " " + Rname);
+			        	// for both case 7 and case 8, once the item is successfully added, the user will be prompted to 
+			        	// select another item and to go to the previous menu
 			        	exitUI = true;
 			        	break;
 			        	
@@ -232,6 +226,7 @@ public class UserInterface{
 			        	// update quantity variable for this item in MP3 or CD
 			        	// get name of option
 			        	System.out.println(audQ + " " + Aname);
+			        	
 			        	exitUI = true;
 			        	break;
 			        	
