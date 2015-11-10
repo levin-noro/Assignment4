@@ -63,7 +63,7 @@ public class UserInterface{
 			        	
 			            
 			        case 2:
-			        	// This case is correctly adding username to Users.txt
+			        	
 			        	System.out.println("Choose your username:\n"); 
 			        	
 			        	String newname = scanner.next();
@@ -73,7 +73,8 @@ public class UserInterface{
 				        User newUser = new User(newname);
 					    
 						try {
-							newUser.getUsername(newname, 2);
+							String newU = newUser.getUsername(newname, 2);
+							System.out.println(newU);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -85,33 +86,31 @@ public class UserInterface{
 			        	
 			            
 			        case 3:
-			        	// This case is still not printing out Hello Mr. Whatever (if user exists) and No Access (if user does not exist)
+			        	
 			        	System.out.println("Enter your username:"); System.out.println();
 			        	String name = scanner.next();
 			        	
 			        	
 			        	User currUser = new User(name);
 			        	ShoppingCart SC = new ShoppingCart(currUser.username);
-						String userExists = null;
+						
 						try {
-							userExists = currUser.getUsername(name, 1);
+							String login = currUser.getUsername(name, 1);
+							System.out.println(login);
+							if (login.equals("Hello Mr." + name)) {
+								currentPage(4);
+							}
+							else if (login.equals("No Access")) {
+								currentPage(1);
+							}
+							else {System.out.println("bananas");}
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-			        		        		 
-			        	if (userExists == "Hello Mr." + name) {
-			        		System.out.println("end");
-			        		//currentPage(4);
-			        		
-			        	}
-			        	else {
-			        		// currentPage(1)
-			        		currentPage(4);
-			        		
-			        	}
-			        	
-			        	break;
+			        	   		 
+						
+			            break;
 			        	
 			        case 4:
 			        	
@@ -152,6 +151,11 @@ public class UserInterface{
 			        	
 			        case 6:
 			        	// view contents of shopping cart. should get method from shoppingcart.java
+			        	// should be in the getContent method of ShoppingCart?
+			        	// perhaps shopping cart contents of cart in a 2D array? 1st element could contain object, 2nd element could contain date accessed
+			        	
+			        	// SC.getContent();  
+			        	
 			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to checkout.");
 			        	System.out.println("Choose your option:"); System.out.println();
 			        	int op = Integer.parseInt(scanner.next());
