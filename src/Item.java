@@ -8,9 +8,9 @@ public abstract class Item{
 		protected int price;
 		protected int quantity;
 		protected String itemtype;
-		
-		public abstract String[] getInfo(String filename, int lineNumber);
-		public abstract double getPrice(String serial, String filename);
+		// might want to change this signature
+//		public abstract String[] getInfo(String filename, int lineNumber);
+		public abstract double getPrice(int serial, String filename);
 		
 }
 	

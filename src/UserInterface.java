@@ -1,11 +1,5 @@
-import java.io.BufferedReader;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.ListIterator;
 
 public class UserInterface{
 		
@@ -95,6 +89,7 @@ public class UserInterface{
 			        	
 			        	
 			        	User currUser = new User(name);
+			        	ShoppingCart SC = new ShoppingCart(currUser.username);
 						String userExists = null;
 						try {
 							userExists = currUser.getUsername(name, 1);
@@ -124,18 +119,15 @@ public class UserInterface{
 			        	
 			        	case 1:
 			        		currentPage(5);
-			        		
 			        		break;
 			        	
 			        	case 2:
 			        		currentPage(6);
-			        		
 			        		break;
 			        		
 			        	case 3:
 			        		currentPage(1);
-			        		
-			        		break;		        		
+			           		break;		        		
 			        	}
 			        	
 			        	break;
@@ -162,24 +154,42 @@ public class UserInterface{
 			        	System.out.println("Choose your option:"); System.out.println();
 			        	int op = Integer.parseInt(scanner.next());
 			        	if (op == -1) {currentPage(5);}
-			        	if (op == 0) {currentPage(10);}
+			        	if (op == 0) {currentPage(9);}
 			        	break;
 			        	
 			        case 7:
 			        	Readable r = new Readable();
 			        	r.printListInfo();
+			        	r.getReadableList();
 			        	System.out.println();
+			        	// ebooks and books should be initialized as objects into an array
+			        	// this can be done by a function in readable 
 			        	System.out.println("Choose your option:");
-			        	
+			        	// read gets the serial number of the readable item. 	
 			        	int read = Integer.parseInt(scanner.next());
 			        	
+			        	
 			        	if (read == -1) {currentPage(5); break;}
+			        	ListIterator<Readable> itr = r.readList.listIterator();
+			        	String Rname = null;
+			        	// looks through the list of readable items and finds the one with a serial number that matches the one entered by the user
+			        	// later include code to handle input of serial number that does not match any in the list
+			        	while(itr.hasNext()) {
+			        		Readable currR = itr.next();
+			        		if (currR.sNo == read) {
+			        			Rname = currR.title;
+			        			// want to include something here to add the item to the shopping cart	
+			        			break;
+			        		
+			        		}
+			        	}
 			        	System.out.println("Enter quantity:");
 			        	int readQ = Integer.parseInt(scanner.next()); System.out.println();
+			        	// once the quantity and the serial number have been obtained, the 
 			        	// update quantity variable for this item in eBooks or Books
 			        	// update quantity variable for this item in MP3 or CD
-			        	// get name of option
-			        	System.out.println(readQ + " " + "name");
+			        	
+			        	System.out.println(readQ + " " + Rname);
 			        	exitUI = true;
 			        	break;
 			        	
@@ -188,17 +198,34 @@ public class UserInterface{
 			        	// audio
 			        	Audio a = new Audio();
 			        	a.printListInfo();
+			        	a.getAudioList();
 			        	System.out.println();
 			        	System.out.println("Choose your option:");
 			        
 			        	int aud = Integer.parseInt(scanner.next());
 			        	if (aud == -1) {currentPage(5); break;}
+			        	ListIterator<Audio> itrA = a.audList.listIterator();
+			        	String Aname = null;
+			        	// looks through the list of readable items and finds the one with a serial number that matches the one entered by the user
+			        	
+			        	while(itrA.hasNext()) {
+			        		Audio currA = itrA.next();
+			        		if (currA.sNo == aud) {
+			        			Aname = currA.title;
+			        			break;
+			        		// also want to include something here to add the item to the shopping cart	
+			        		}
+			        		else {
+			        			System.out.println("Your option was not in the list. Please choose again.");
+			        			aud = Integer.parseInt(scanner.next());
+			        		}
+			        	}
 			        	System.out.println("Enter quantity:");
 			        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
 			        	// update quantity variable for this item in eBooks or Books
 			        	// update quantity variable for this item in MP3 or CD
 			        	// get name of option
-			        	System.out.println(audQ + " " + "name");
+			        	System.out.println(audQ + " " + Aname);
 			        	exitUI = true;
 			        	break;
 			        	

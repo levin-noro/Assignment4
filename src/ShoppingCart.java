@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 public class ShoppingCart extends User {
 
+		public ShoppingCart(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 		private String[] content; // array of items
 		
 		public String getContent(String name) throws IOException { // return the content of the shopping cart
