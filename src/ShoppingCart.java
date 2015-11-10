@@ -85,6 +85,9 @@ public class ShoppingCart extends User {
 			sc.close();
 			return array;
 		}
+		// maybe updateItemFile should receive as parameters the object and the quantity.
+		// the serial number would be accessible through the object. 
+		// the correct filename would be chosen based on the value of itemtype. 
 		
 		private static String[] updateItemFile(String filename, String serial, int decQuantity) throws IOException {
 			File textfile = new File(filename); // Opens textfile for Books

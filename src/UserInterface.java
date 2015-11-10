@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.IOException;
 import java.util.ListIterator;
 
 public class UserInterface{
@@ -62,7 +63,7 @@ public class UserInterface{
 			        	
 			            
 			        case 2:
-			        	
+			        	// This case is correctly adding username to Users.txt
 			        	System.out.println("Choose your username:\n"); 
 			        	
 			        	String newname = scanner.next();
@@ -84,6 +85,7 @@ public class UserInterface{
 			        	
 			            
 			        case 3:
+			        	// This case is still not printing out Hello Mr. Whatever (if user exists) and No Access (if user does not exist)
 			        	System.out.println("Enter your username:"); System.out.println();
 			        	String name = scanner.next();
 			        	
