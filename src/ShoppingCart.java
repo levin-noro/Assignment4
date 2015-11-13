@@ -51,6 +51,7 @@ public class ShoppingCart extends User {
 		
 		// content should also be stored in a linked list (maybe containing arrays or linked lists, 1st element would be the object
 		// so we have convenient access to the object properties, the second element would be the date that the item was added to the shopping cart
+		// this would make it easier to get item info for the checkout page of userinterface
 		
 		// could use simpledateformat to get the date in dd/mm/yyy format
 		
