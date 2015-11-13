@@ -43,8 +43,21 @@ public class ShoppingCart extends User {
 			
 		}
 		
-		public void AddItem(String type, String serial, String name, int decQuantity) throws IOException 
+		public void AddItem(String type, String serial, String name, int decQuantity) throws IOException
+		// maybe rewrite this function so that it only takes the object (type Item? I'm assuming that will work for 
+		// both readable and audio types) and the quantity
+		
 		// content of the shopping cart is stored in Cart.txt with the following fields: S.No, product name, date added, quantity
+		
+		// content should also be stored in a linked list (maybe containing arrays or linked lists, 1st element would be the object
+		// so we have convenient access to the object properties, the second element would be the date that the item was added to the shopping cart
+		
+		// could use simpledateformat to get the date in dd/mm/yyy format
+		
+		// perhaps we should intialize a shopping cart in the user class because it's supposed to be associated with each user anyway
+		// might not be necessary to look through the list of users before using the shopping cart because the shopping cart should be
+		// associated with an existing user anyway
+		
 		{
 			// Checks if user exits
 			boolean userExists = searchFile("Users.txt",name);
@@ -90,6 +103,7 @@ public class ShoppingCart extends User {
 		// the correct filename would be chosen based on the value of itemtype. 
 		
 		private static String[] updateItemFile(String filename, String serial, int decQuantity) throws IOException {
+			
 			File textfile = new File(filename); // Opens textfile for Books
 			//Scanner sc = new Scanner (textfile); // Opens scanner which will read through textfile
 			
