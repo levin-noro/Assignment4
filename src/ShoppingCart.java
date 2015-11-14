@@ -109,7 +109,7 @@ public class ShoppingCart extends User {
 				// might not need to store properties in an array
 				
 				String added = updateItemFile(filename, Integer.toString(addthis.sNo), decQuantity);
-				System.out.println(added);
+				
 				//update cart checks if the item is already in the shopping cart
 				// if it is, it modifies the quantity in both the file and the LinkedList
 				// if it isn't, it adds the item to the file and to the LinkedList
@@ -123,6 +123,7 @@ public class ShoppingCart extends User {
 				 linkedList containing up to date item info. 
 				 
 				 */
+					
 					updateCart(addthis, decQuantity);
 				}
 						
@@ -192,6 +193,7 @@ public class ShoppingCart extends User {
 			        			// could change updateItemFile so that it accepts 
 			        			currI.quantity = quantity;
 			        			break;
+			        			}
 			        		// also want to include something here to add the item to the shopping cart	
 			        		}
 					}
@@ -206,8 +208,8 @@ public class ShoppingCart extends User {
 						
 					}
 					
-					properties[4] = quantity.toString(); // Updates the new quantity in the array
-					System.out.println("the new quantity is" + properties[4]);
+					properties[4] = " "+quantity.toString(); // Updates the new quantity in the array
+					
 					String newline = String.join(",",properties); // joins updated String array into a String
 					updatedLines.add(newline); // stores full line into array
 					
@@ -220,13 +222,13 @@ public class ShoppingCart extends User {
 			}
 			
 			PrintWriter updated;
-			System.out.println("we are writing to" + filename);
+			
 			updated = new PrintWriter (new BufferedWriter(new FileWriter(filename)));  //clears file every time
 			
 			ListIterator<String> itrUpdate = updatedLines.listIterator();
 			while(itrUpdate.hasNext()) {
         		String updatedLine = itrUpdate.next(); // iterates through the linkedlist updatedLines and appends them to the file
-				System.out.println("writing line to file");
+				
 				updated.println(updatedLine); 
 			}
 			
@@ -241,7 +243,7 @@ public class ShoppingCart extends User {
 			
 			if (cartList.isEmpty()) {
 				cartList.add(addthis);
-				System.out.println("addthis is an octopus called" + addthis.title);
+				
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
     			Date today = Calendar.getInstance().getTime();        
     			String reportDate = df.format(today);
