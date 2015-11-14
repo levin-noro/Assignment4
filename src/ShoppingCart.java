@@ -182,7 +182,18 @@ public class ShoppingCart extends User {
 					System.out.println("the quantity is: " + quantity);
 					// if the filename given to this function is the cart file, the quantity is incremented
 					if (filename.equals("Cart_" + this.username + ".txt")) {
+
 						quantity = quantity + decQuantity; // decrements the quantity property of this line/item
+						// increment the item quantity in the linkedList
+						ListIterator<Item> itrC = cartList.listIterator();
+			        	while(itrC.hasNext()) {
+			        		Item currI = itrC.next();
+			        		if (currI.sNo == Integer.parseInt(serial)) {
+			        			// could change updateItemFile so that it accepts 
+			        			currI.quantity = quantity;
+			        			break;
+			        		// also want to include something here to add the item to the shopping cart	
+			        		}
 					}
 					else {
 						
