@@ -148,19 +148,21 @@ public class UserInterface{
 			        	
 			        	
 			        	if (read == -1) {currentPage(5); break;}
-			        	ListIterator<Readable> itr = r.readList.listIterator();
+			        	ListIterator<Readable> itrR = r.readList.listIterator();
 			        	String Rname = null;
 			        	Readable currR = null;
 			        	// looks through the list of readable items and finds the one with a serial number that matches the one entered by the user
 			        	// later include code to handle input of serial number that does not match any in the list
-			        	while(itr.hasNext()) {
-			        		currR = itr.next();
+			        	while(itrR.hasNext()) {
+			        		currR = itrR.next();
 			        		if (currR.sNo == read) {
 			        			Rname = currR.title;
-			        			// want to include something here to add the item to the shopping cart	
 			        			break;
-			        		
 			        		}
+			        	}
+			        	if (Rname.equals(null)) {
+			        		System.out.println("Your option was not in the list. Please choose again.");
+		        			currentPage(8);
 			        	}
 			        	System.out.println("Enter quantity:");
 			        	int readQ = Integer.parseInt(scanner.next()); System.out.println();
@@ -199,13 +201,13 @@ public class UserInterface{
 			        		if (currA.sNo == aud) {
 			        			Aname = currA.title;
 			        			break;
-			        		// also want to include something here to add the item to the shopping cart	
-			        		}
-			        		else {
-			        			System.out.println("Your option was not in the list. Please choose again.");
-			        			aud = Integer.parseInt(scanner.next());
 			        		}
 			        	}
+			        	if (Aname.equals(null)) {
+			        		System.out.println("Your option was not in the list. Please choose again.");
+		        			currentPage(8);
+			        	}
+			        	
 			        	System.out.println("Enter quantity:");
 			        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
 			        	

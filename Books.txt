@@ -1,2 +1,2 @@
 101, Java Rocks, XYZ, 150, 3,Book
-102, Python Sucks, YYZ, 200, 20,Book
+102, Python Sucks, YYZ, 200, 18,Book
