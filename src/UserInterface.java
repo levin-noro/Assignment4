@@ -54,7 +54,6 @@ public class UserInterface{
 				switch (currentPage){
 			        
 					case 1:
-						 
 						
 			            System.out.println("1.Sign in\n2.Sign up\n\nChoose your option:	");
 			            int page = Integer.parseInt(scanner.next());
@@ -74,14 +73,12 @@ public class UserInterface{
 							String newU = newUser.getUsername(newname, 2);
 							System.out.println(newU + "\n");
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					   	currentPage(1);
 					   	break;
 			        	
-			        	// System.out.println("Username successfully added		P2"); page numbers have to be added to output of getUsername
-			        	
+			   
 			            
 			        case 3:
 			        	
@@ -101,58 +98,42 @@ public class UserInterface{
 							}
 							
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-			        	   		 
-						
-			            break;
+			        	break;
 			        	
 			        case 4:
 			        	
 			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \n\nChoose your option: \n\n ");
-			        	
-			        	switch(Integer.parseInt(scanner.next())) {
-			        	
-			        	case 1:
-			        		currentPage(5);
-			        		break;
-			        	
-			        	case 2:
-			        		currentPage(6);
-			        		break;
-			        		
-			        	case 3:
-			        		currentPage(1);
-			           		break;		        		
-			        	}
+			        	int op4 = Integer.parseInt(scanner.next());
+			        	if (op4 == 1) {currentPage(5);}
+			        	if (op4 == 2) {currentPage(6);}
+			        	if (op4 == 3) {currentPage(1);}
 			        	
 			        	break;
 			        	
 			        case 5:
 			        	
 			        	System.out.println("1.Readables \n2.Audio \n\nChoose your option:\n\nPress -1 to return to the previous menu");
-			        	
 			        	int option = Integer.parseInt(scanner.next());
-			        	
 			        	if (option == 1) {currentPage(7);}
 			        	if (option == 2) {currentPage(8);}
-			        	if (option == -1) {currentPage(1);}
+			        	if (option == -1) {currentPage(4);}
 			        	
 			        	break;
 			        	
 			        case 6:
 			        	// view contents of shopping cart. should get method from shoppingcart.java
-			        	// should be in the getContent method of ShoppingCart?
-			        	// perhaps shopping cart contents of cart in a 2D array? 1st element could contain object, 2nd element could contain date accessed
+			        		        	
+			        	System.out.print(SC.getContent());  
 			        	
-			        	// SC.getContent();  
-			        	
-			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to checkout.");
+			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.");
 			        	System.out.println("Choose your option:"); System.out.println();
+			        	
 			        	int op = Integer.parseInt(scanner.next());
 			        	if (op == -1) {currentPage(5);}
 			        	if (op == 0) {currentPage(9);}
+			        	
 			        	break;
 			        	
 			        case 7:
@@ -160,10 +141,9 @@ public class UserInterface{
 			        	r.printListInfo();
 			        	r.getReadableList();
 			        	System.out.println();
-			        	// ebooks and books should be initialized as objects into an array
-			        	// this can be done by a function in readable 
+			        	// ebooks and books are intialized as objects in a linkedlist
 			        	System.out.println("Choose your option:");
-			        	// read gets the serial number of the readable item. 	
+			        	// user inputs the serial number of the item 	
 			        	int read = Integer.parseInt(scanner.next());
 			        	
 			        	
@@ -192,7 +172,11 @@ public class UserInterface{
 			        	SC.AddItem(currR, readQ);
 			        	// for both case 7 and case 8, once the item is successfully added, the user will be prompted to 
 			        	// select another item and to go to the previous menu
-			        	exitUI = true;
+			        	System.out.println("Press -2 to continue shopping or press 0 to CheckOut");
+			        	int op7 = Integer.parseInt(scanner.next());
+			        	if (op7 == -2) {currentPage(5);}
+			        	if (op7 == 0) {currentPage(10);}
+			        	
 			        	break;
 			        	
 			        	
@@ -226,21 +210,22 @@ public class UserInterface{
 			        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
 			        	
 			        	System.out.println(audQ + " " + Aname);
-			        	SC.AddItem(currA, audQ);
-			        	// update quantity variable for this item in eBooks or Books
 			        	// update quantity variable for this item in MP3 or CD
-			        	// get name of option
-			        	exitUI = true;
+			        	SC.AddItem(currA, audQ);
+			        	
+			        	System.out.println("Press -2 to continue shopping or press 0 to CheckOut");
+			        	int op8 = Integer.parseInt(scanner.next());
+			        	if (op8 == -2) {currentPage(5);}
+			        	if (op8 == 0) {currentPage(10);}
+			        	
 			        	break;
 			        	
 			        case 10:
 			        	// checkout
-			        	System.out.println("Choose your option:"); System.out.println();
+			        	System.out.println("Checkout!"); System.out.println();
 			        	exitUI = true;
 			        	
-			        default:
-			            System.out.println("Default case");
-			            break;
+			        
 			            
 			    
 			    }

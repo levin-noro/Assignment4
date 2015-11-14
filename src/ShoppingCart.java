@@ -146,7 +146,7 @@ public class ShoppingCart extends User {
 		}
 		
 		private static LinkedList<String> storeLines (LinkedList<String> list,File infile) throws FileNotFoundException {
-			System.out.println("storing lines");
+			
 			Scanner sc = new Scanner (infile);
 			while(sc.hasNextLine()) {
 				list.add(sc.nextLine());
@@ -168,7 +168,7 @@ public class ShoppingCart extends User {
 			
 			LinkedList<String> lines = new LinkedList<String>(); // Create String array that to store each line in textfile
 			storeLines(lines,textfile); // Stores each line in textfile as an element in a String LinkedList
-			System.out.println("lines stored");
+			
 			LinkedList<String> updatedLines = new LinkedList<String>(); // String that will stores existing lines along with any modified lines
 			
 			//String[] updatedItemLine = null;
@@ -180,7 +180,7 @@ public class ShoppingCart extends User {
 				
 				if (serial.equals(properties[0])) { // Checks if given serial number matches the serial number on this line
 					Integer quantity = Integer.parseInt(properties[4].trim()); // Stores current quantity
-					System.out.println("the quantity is: " + quantity);
+					
 					// if the filename given to this function is the cart file, the quantity is incremented
 					if (filename.equals("Cart_" + this.username + ".txt")) {
 
