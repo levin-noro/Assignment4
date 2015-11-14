@@ -127,8 +127,7 @@ public class UserInterface{
 			        		        	
 			        	System.out.print(SC.getContent());  
 			        	
-			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.");
-			        	System.out.println("Choose your option:"); System.out.println();
+			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.\nChoose your option:\n\n");
 			        	
 			        	int op = Integer.parseInt(scanner.next());
 			        	if (op == -1) {currentPage(5);}
@@ -226,12 +225,8 @@ public class UserInterface{
 			        	// checkout
 			        	System.out.println("Checkout!"); System.out.println();
 			        	exitUI = true;
-			        	
-			        
-			            
-			    
+			 
 			    }
-				
 				
 			}
 			while (exitUI == false);
@@ -243,58 +238,3 @@ public class UserInterface{
 		}
 }
 
-/*		        
- case 3:
-			        	System.out.println("Enter your username:"); System.out.println();
-			        	String name = scanner.next();
-			        	scanner.close();
-			        	User currUser = new User();
-			        	newUser.getUsername(name, 2);
-			        	/*
-			        	int found = 0;
-			        	InputStream is;
-			        	try {
-			        		is = new FileInputStream("Users.txt");
-			        	} catch (FileNotFoundException e) {
-			        		// TODO Auto-generated catch block
-			        		e.printStackTrace();
-			        	}
-			            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-			            String line;
-
-			            while ( (line = rd.readLine()) != null ){
-			            				 // should we ignore case for usernames?
-			            if(line.matches(name)){
-			            	System.out.println("Hello Mr."+name+"		P3");
-			        		found = 1;
-			        		break;}
-			        	}
-			        	
-			        			 
-			        	if (found == 0) {
-			        		currentPage(4);
-			        		changeCurrentPage();
-			        	}
-			        	
-			        	currentPage(5);
-			        	changeCurrentPage();
-			        	
-			        	// structure specified in assignment says that pages 3 and 4 are supposed to be separate but it seems like it would make sense to merge them
-			            break;
-			            
-			        case 4:
-			        	System.out.println("No Access");
-			        	currentPage(1);
-			        	changeCurrentPage();
-			        	break;
-			        	
-
-	
-
-	
-
-	
-
-	
-
-*/
