@@ -44,9 +44,11 @@ public class UserInterface{
 			if(ui.getCurrentPage() == 1) {
   			ui.changeCurrentPage(2) */
 
-		public int changeCurrentPage() {// This method is for page navigation. It should change to current page and show the content.
+		public int changeCurrentPage() throws IOException {// This method is for page navigation. It should change to current page and show the content.
 			boolean exitUI = false;
 			Scanner scanner = new Scanner(System.in);
+			User currUser = null;
+			ShoppingCart SC = null;
 			do {
 				
 				switch (currentPage){
@@ -85,10 +87,8 @@ public class UserInterface{
 			        	
 			        	System.out.println("Enter your username:"); System.out.println();
 			        	String name = scanner.next();
-			        	
-			        	
-			        	User currUser = new User(name);
-			        	ShoppingCart SC = new ShoppingCart(currUser.username);
+			        	currUser = new User(name);
+			        	SC = new ShoppingCart(currUser);
 						
 						try {
 							String login = currUser.getUsername(name, 1);
@@ -170,10 +170,11 @@ public class UserInterface{
 			        	if (read == -1) {currentPage(5); break;}
 			        	ListIterator<Readable> itr = r.readList.listIterator();
 			        	String Rname = null;
+			        	Readable currR = null;
 			        	// looks through the list of readable items and finds the one with a serial number that matches the one entered by the user
 			        	// later include code to handle input of serial number that does not match any in the list
 			        	while(itr.hasNext()) {
-			        		Readable currR = itr.next();
+			        		currR = itr.next();
 			        		if (currR.sNo == read) {
 			        			Rname = currR.title;
 			        			// want to include something here to add the item to the shopping cart	
@@ -185,9 +186,10 @@ public class UserInterface{
 			        	int readQ = Integer.parseInt(scanner.next()); System.out.println();
 			        	// once the quantity and the serial number have been obtained, the 
 			        	// update quantity variable for this item in eBooks or Books
-			        	// update quantity variable for this item in MP3 or CD
+			       
 			        	
 			        	System.out.println(readQ + " " + Rname);
+			        	SC.AddItem(currR, readQ);
 			        	// for both case 7 and case 8, once the item is successfully added, the user will be prompted to 
 			        	// select another item and to go to the previous menu
 			        	exitUI = true;
@@ -207,9 +209,9 @@ public class UserInterface{
 			        	ListIterator<Audio> itrA = a.audList.listIterator();
 			        	String Aname = null;
 			        	// looks through the list of readable items and finds the one with a serial number that matches the one entered by the user
-			        	
+			        	Audio currA = null;
 			        	while(itrA.hasNext()) {
-			        		Audio currA = itrA.next();
+			        		currA = itrA.next();
 			        		if (currA.sNo == aud) {
 			        			Aname = currA.title;
 			        			break;
@@ -222,11 +224,12 @@ public class UserInterface{
 			        	}
 			        	System.out.println("Enter quantity:");
 			        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
+			        	
+			        	System.out.println(audQ + " " + Aname);
+			        	SC.AddItem(currA, audQ);
 			        	// update quantity variable for this item in eBooks or Books
 			        	// update quantity variable for this item in MP3 or CD
 			        	// get name of option
-			        	System.out.println(audQ + " " + Aname);
-			        	
 			        	exitUI = true;
 			        	break;
 			        	

@@ -50,7 +50,7 @@ public class Readable extends Item {
 		        return read;
 		    } 
 			catch (IOException e) {
-	            System.out.println("File Read Error with squirrels");
+	            System.out.println("File Read Error.");
 	        }
 			return read;
 			

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class HWK4_karskim {
 	
-	public static void main(String args[]) { 
+	public static void main(String args[]) throws IOException { 
 		Readable x = new Readable();
 //		x.getInfo("Books.txt");
 //		x.getListInfo("Books.txt");
@@ -21,5 +21,8 @@ public class HWK4_karskim {
 		UserInterface Inter = new UserInterface(1);
 		Inter.currentPage(1);
 		Inter.changeCurrentPage();
+		//User currUser = new User("Magda");
+		//ShoppingCart SC = new ShoppingCart(currUser);
+		
 	}
 }
