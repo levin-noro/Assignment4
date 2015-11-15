@@ -124,6 +124,7 @@ public class UserInterface{
 			        	
 			        case 6:
 			        	// view contents of shopping cart. should get method from shoppingcart.java
+			        	// doesn't go to checkout
 			        		        	
 			        	System.out.print(SC.getContent());  
 			        	
@@ -176,7 +177,7 @@ public class UserInterface{
 			        	System.out.println("Press -2 to continue shopping or press 0 to CheckOut");
 			        	int op7 = Integer.parseInt(scanner.next());
 			        	if (op7 == -2) {currentPage(5);}
-			        	if (op7 == 0) {currentPage(10);}
+			        	if (op7 == 0) {currentPage(9);}
 			        	
 			        	break;
 			        	
@@ -217,12 +218,14 @@ public class UserInterface{
 			        	System.out.println("Press -2 to continue shopping or press 0 to CheckOut");
 			        	int op8 = Integer.parseInt(scanner.next());
 			        	if (op8 == -2) {currentPage(5);}
-			        	if (op8 == 0) {currentPage(10);}
+			        	if (op8 == 0) {currentPage(9);}
 			        	
 			        	break;
 			        	
-			        case 10:
+			        case 9:
 			        	// checkout
+			        	// we need to check what happens if the person does not want to pay. do you sign out, or do you go back to a previous menu. 
+			        	// check how we're supposed to generate confirmation IDs, do we just increment the value by 1 (so the second user would get an ID of U1001)
 			        	System.out.println("Checkout!"); System.out.println();
 			        	exitUI = true;
 			 
