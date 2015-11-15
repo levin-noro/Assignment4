@@ -5,9 +5,9 @@ import java.io.IOException;
 //import HWK4_karskim.Item.Readable;
 
 public class Book extends Readable {
-		@Override
-		public double getPrice(String serial, String filename) { // override to get the item price and add 2% (Environment Tax)
-			double priceWithTax = 0;
+		//@Override commented this out for now. 
+		public double getPrice() { // override to get the item price and add 2% (Environment Tax)
+			/*double priceWithTax = 0;
 			try {
 				java.lang.String[] ar = {};
 	            BufferedReader in = new BufferedReader(new FileReader(filename));
@@ -22,8 +22,8 @@ public class Book extends Readable {
 		    } 
 			catch (IOException e) {
 	            System.out.println("File Read Error");
-	        } 
-			return priceWithTax;
+	        } */ 
+			return super.price*1.02;
 		}
 		
 }

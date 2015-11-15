@@ -1,14 +1,14 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.io.IOException;
+import java.util.ListIterator;
 
 public class UserInterface{
 		
 		private int currentPage; // the page number (P1...P10)
+		
+		public UserInterface(int page) {
+			currentPage = page;
+		}
 		
 		public int currentPage(int page) { // This method is for page navigation. Based on the values of the state variable, call different pages
 			currentPage = page;
@@ -45,159 +45,199 @@ public class UserInterface{
   			ui.changeCurrentPage(2) */
 
 		public int changeCurrentPage() throws IOException {// This method is for page navigation. It should change to current page and show the content.
-			Scanner scanner = new Scanner(System.in); 
-			switch (currentPage){
-		        
-				case 1:
-		            System.out.println("1.Sign in	P1");
-		            System.out.println("2.Sign up"); System.out.println();
-		            System.out.print("Choose your option: ");
-		        	int page = Integer.parseInt(scanner.next());
-		        	if (page == 1) {currentPage(2);}
-		        	if (page == 2) {currentPage(3);}
-		        	scanner.close();
-		        	break;
-		            
-		        case 2:
-		        	System.out.println("Choose your username:"); System.out.println();
-		        	String newname = scanner.next();
-		        	User newUser = new User();
-		        	newUser.getUsername(newname, 1); // change
-		        	// System.out.println("Username successfully added		P2"); page numbers have to be added to output of getUsername
-		        	scanner.close();
-		            break;
-		        
-		        case 3:
-		        	System.out.println("Enter your username:"); System.out.println();
-		        	String name = scanner.next();
-		        	scanner.close();
-		        	int found = 0;
-		        	InputStream is;
-		        	try {
-						is = new FileInputStream("Users.txt");
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-			        String line;
-	
-			        while ( (line = rd.readLine()) != null ){
-			        				 // should we ignore case for usernames?
-			        if(line.matches(name)){
-			        	System.out.println("Hello Mr."+name+"		P3");
-		        		found = 1;
-		        		break;}
-		        	}
-		        			 
-		        	if (found == 0) {
-		        		currentPage(4);
-		        		changeCurrentPage();
-		        	}
-		        	
-		        	currentPage(5);
-	        		changeCurrentPage();
-		        	
-	        		// structure specified in assignment says that pages 3 and 4 are supposed to be separate but it seems like it would make sense to merge them
-		            break;
-		            
-		        case 4:
-		        	System.out.println("No Access");
-		        	currentPage(1);
-	        		changeCurrentPage();
-	        		break;
-		        	
-		        case 5:
-		        	
-		        	System.out.println("1.View Items By Category");
-		        	System.out.println("2.View Shopping Cart");
-		        	System.out.println("3.Sign Out"); System.out.println();
-		        	
-		        	System.out.println("Choose your option:");
-		        	System.out.println("							P5");
-		        	
-		        	switch(Integer.parseInt(scanner.next())) {
-		        	
-		        	case 1:
-		        		currentPage(6);
-		        		changeCurrentPage();
-		        		break;
-		        	
-		        	case 2:
-		        		currentPage(7);
-		        		changeCurrentPage();
-		        		break;
-		        		
-		        	case 3:
-		        		currentPage(1);
-		        		changeCurrentPage();
-		        		break;		        		
-		        	}
-		        	scanner.close();
-		        	break;
-		        	
-		        case 6:
-		        	
-		        	System.out.println("1.Readables");
-		        	System.out.println("2.Audio"); System.out.println();
-		        	System.out.println("Choose your option:"); System.out.println();
-		        	System.out.println("Press -1 to return to the previous menu");
-		        	
-		        	int option = Integer.parseInt(scanner.next());
-		        	scanner.close();
-		        	
-		        	if (option == 1) {currentPage(6); changeCurrentPage();}
-		        	if (option == 2) {currentPage(7); changeCurrentPage();}
-		        	if (option == -1) {currentPage(1); changeCurrentPage();}
-		        	
-		        	break;
-		        	
-		        case 7:
-		        	// view contents of shopping cart. should get method from shoppingcart.java
-		        	System.out.println("Press -1 to go to the previous menu or press 0 to go to checkout.");
-		        	if (option == -1) {currentPage(5); changeCurrentPage();}
-		        	if (option == 0) {currentPage(10); changeCurrentPage();}
-		        	
-		        case 8:
-		        	Readable r = new Readable();
-		        	r.printListInfo();
-		        	System.out.println();
-		        	System.out.println("Choose your option:");
-		        	int read = Integer.parseInt(scanner.next());
-		        	System.out.println("Enter quantity:");
-		        	int readQ = Integer.parseInt(scanner.next()); System.out.println();
-		        	// update quantity variable for this item in eBooks or Books
-		        	// update quantity variable for this item in MP3 or CD
-		        	// get name of option
-		        	System.out.println(readQ + " " + "name");
-		        	
-		        	
-		        case 9:
-		        	// audio
-		        	Audio a = new Audio();
-		        	a.printListInfo();
-		        	System.out.println();
-		        	System.out.println("Choose your option:");
-		        	int aud = Integer.parseInt(scanner.next());
-		        	System.out.println("Enter quantity:");
-		        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
-		        	// update quantity variable for this item in eBooks or Books
-		        	// update quantity variable for this item in MP3 or CD
-		        	// get name of option
-		        	System.out.println(audQ + " " + "name");
-		        	
-		        case 10:
-		        	// checkout
-		        	System.out.println("Choose your option:"); System.out.println();
-		        
-		            
-		        default:
-		            System.out.println("Default case");
-		            break;
-		    
-		    }
-			return changeCurrentPage();              
+			boolean exitUI = false;
+			Scanner scanner = new Scanner(System.in);
+			User currUser = null;
+			ShoppingCart SC = null;
+			do {
+				
+				switch (currentPage){
+			        
+					case 1:
+						
+			            System.out.println("1.Sign in\n2.Sign up\n\nChoose your option:	");
+			            int page = Integer.parseInt(scanner.next());
+			           	if (page == 1) {currentPage(3);}
+			        	if (page == 2) {currentPage(2);}
+			        	break;
+			        	
+			        	
+			            
+			        case 2:
+			        	
+			        	System.out.println("Choose your username:\n"); 
+			        	String newname = scanner.next();
+				        User newUser = new User(newname);
+					    
+						try {
+							String newU = newUser.getUsername(newname, 2);
+							System.out.println(newU + "\n");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					   	currentPage(1);
+					   	break;
+			        	
+			   
+			            
+			        case 3:
+			        	
+			        	System.out.println("Enter your username:"); System.out.println();
+			        	String name = scanner.next();
+			        	currUser = new User(name);
+			        	SC = new ShoppingCart(currUser);
+						
+						try {
+							String login = currUser.getUsername(name, 1);
+							System.out.println(login + "\n");
+							if (login.equals("Hello Mr." + name)) {
+								currentPage(4);
+							}
+							else if (login.equals("No Access")) {
+								currentPage(1);
+							}
+							
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+			        	break;
+			        	
+			        case 4:
+			        	
+			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \n\nChoose your option: \n\n ");
+			        	int op4 = Integer.parseInt(scanner.next());
+			        	if (op4 == 1) {currentPage(5);}
+			        	if (op4 == 2) {currentPage(6);}
+			        	if (op4 == 3) {currentPage(1);}
+			        	
+			        	break;
+			        	
+			        case 5:
+			        	
+			        	System.out.println("1.Readables \n2.Audio \n\nChoose your option:\n\nPress -1 to return to the previous menu");
+			        	int option = Integer.parseInt(scanner.next());
+			        	if (option == 1) {currentPage(7);}
+			        	if (option == 2) {currentPage(8);}
+			        	if (option == -1) {currentPage(4);}
+			        	
+			        	break;
+			        	
+			        case 6:
+			        	// view contents of shopping cart. should get method from shoppingcart.java
+			        	// doesn't go to checkout
+			        		        	
+			        	System.out.print(SC.getContent());  
+			        	
+			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.\nChoose your option:\n\n");
+			        	
+			        	int op = Integer.parseInt(scanner.next());
+			        	if (op == -1) {currentPage(5);}
+			        	if (op == 0) {currentPage(9);}
+			        	
+			        	break;
+			        	
+			        case 7:
+			        	Readable r = new Readable();
+			        	r.printListInfo();
+			        	r.getReadableList();
+			        	System.out.println();
+			        	// ebooks and books are intialized as objects in a linkedlist
+			        	System.out.println("Choose your option:");
+			        	// user inputs the serial number of the item 	
+			        	int read = Integer.parseInt(scanner.next());
+			        	
+			        	
+			        	if (read == -1) {currentPage(5); break;}
+			        	ListIterator<Readable> itrR = r.readList.listIterator();
+			        	String Rname = null;
+			        	Readable currR = null;
+			        	// looks through the list of readable items and finds the one with a serial number that matches the one entered by the user
+			        	// later include code to handle input of serial number that does not match any in the list
+			        	while(itrR.hasNext()) {
+			        		currR = itrR.next();
+			        		if (currR.sNo == read) {
+			        			Rname = currR.title;
+			        			break;
+			        		}
+			        	}
+			        	if (Rname.equals(null)) {
+			        		System.out.println("Your option was not in the list. Please choose again.");
+		        			currentPage(8);
+			        	}
+			        	System.out.println("Enter quantity:");
+			        	int readQ = Integer.parseInt(scanner.next()); System.out.println();
+			        	// once the quantity and the serial number have been obtained, the 
+			        	// update quantity variable for this item in eBooks or Books
+			       
+			        	
+			        	System.out.println(readQ + " " + Rname);
+			        	SC.AddItem(currR, readQ);
+			        	// for both case 7 and case 8, once the item is successfully added, the user will be prompted to 
+			        	// select another item and to go to the previous menu
+			        	System.out.println("Press -2 to continue shopping or press 0 to CheckOut");
+			        	int op7 = Integer.parseInt(scanner.next());
+			        	if (op7 == -2) {currentPage(5);}
+			        	if (op7 == 0) {currentPage(9);}
+			        	
+			        	break;
+			        	
+			        	
+			        case 8:
+			        	// audio
+			        	Audio a = new Audio();
+			        	a.printListInfo();
+			        	a.getAudioList();
+			        	System.out.println();
+			        	System.out.println("Choose your option:");
+			        
+			        	int aud = Integer.parseInt(scanner.next());
+			        	if (aud == -1) {currentPage(5); break;}
+			        	ListIterator<Audio> itrA = a.audList.listIterator();
+			        	String Aname = null;
+			        	// looks through the list of readable items and finds the one with a serial number that matches the one entered by the user
+			        	Audio currA = null;
+			        	while(itrA.hasNext()) {
+			        		currA = itrA.next();
+			        		if (currA.sNo == aud) {
+			        			Aname = currA.title;
+			        			break;
+			        		}
+			        	}
+			        	if (Aname.equals(null)) {
+			        		System.out.println("Your option was not in the list. Please choose again.");
+		        			currentPage(8);
+			        	}
+			        	
+			        	System.out.println("Enter quantity:");
+			        	int audQ = Integer.parseInt(scanner.next()); System.out.println();
+			        	
+			        	System.out.println(audQ + " " + Aname);
+			        	// update quantity variable for this item in MP3 or CD
+			        	SC.AddItem(currA, audQ);
+			        	
+			        	System.out.println("Press -2 to continue shopping or press 0 to CheckOut");
+			        	int op8 = Integer.parseInt(scanner.next());
+			        	if (op8 == -2) {currentPage(5);}
+			        	if (op8 == 0) {currentPage(9);}
+			        	
+			        	break;
+			        	
+			        case 9:
+			        	// checkout
+			        	// we need to check what happens if the person does not want to pay. do you sign out, or do you go back to a previous menu. 
+			        	// check how we're supposed to generate confirmation IDs, do we just increment the value by 1 (so the second user would get an ID of U1001)
+			        	System.out.println("Checkout!"); System.out.println();
+			        	exitUI = true;
+			 
+			    }
+				
+			}
+			while (exitUI == false);
+			scanner.close();
+			return 0;
+				            
 			   
 			
 		}
 }
+
