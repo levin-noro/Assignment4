@@ -68,7 +68,7 @@ public class UserInterface{
 			            
 			        case 2:
 			        	
-			        	System.out.println("Choose your username:\n"); 
+			        	System.out.println("Choose your username:"); 
 			        	String newname = scanner.next();
 				        User newUser = new User(newname);
 					    
@@ -85,7 +85,7 @@ public class UserInterface{
 			            
 			        case 3:
 			        	
-			        	System.out.println("Enter your username:"); System.out.println();
+			        	System.out.println("Enter your username:");
 			        	String name = scanner.next();
 			        	currUser = new User(name);
 			        	SC = new ShoppingCart(currUser);
@@ -107,17 +107,17 @@ public class UserInterface{
 			        	
 			        case 4:
 			        	
-			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \n\nChoose your option: \n\n ");
+			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \n\nChoose your option:");
 			        	int op4 = Integer.parseInt(scanner.next());
 			        	if (op4 == 1) {currentPage(5);}
 			        	if (op4 == 2) {currentPage(6);}
-			        	if (op4 == 3) {currentPage(1);}
+			        	if (op4 == 3) {System.out.println("Signing you out."); exitUI = true; } // currentPage(1);
 			        	
 			        	break;
 			        	
 			        case 5:
 			        	
-			        	System.out.println("1.Readables \n2.Audio \n\nChoose your option:\n\nPress -1 to return to the previous menu");
+			        	System.out.println("1.Readables \n2.Audio \n\nChoose your option:\nPress -1 to return to the previous menu");
 			        	int option = Integer.parseInt(scanner.next());
 			        	if (option == 1) {currentPage(7);}
 			        	if (option == 2) {currentPage(8);}
@@ -129,7 +129,7 @@ public class UserInterface{
 			        	
 			        		        	
 			        	System.out.print(SC.getContent());  
-			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.\nChoose your option:\n\n");
+			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.\nChoose your option:");
 			        	int op = Integer.parseInt(scanner.next());
 			        	if (op == -1) {currentPage(4);}
 			        	if (op == 0) {currentPage(9);}

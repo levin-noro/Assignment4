@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,41 +31,26 @@ public class ShoppingCart extends User {
 		    	} catch (IOException e) {
 			      e.printStackTrace();
 		    	}
-		// TODO Auto-generated constructor stub
+	
 	}
 
-		// private String[] content; // LinkedList instead
 		
 		public String getContent() throws IOException { // return the content of the shopping cart
 			
-		//	File inFile = new File("Users.txt");
 			String output = "";
-		/*	
-			boolean found = searchFile("Users.txt",name);
-			
-			if (found) {
-				
-				File cart = new File("Cart_" + name + ".txt");
-		*/
 			Scanner sc = new Scanner (this.cartFile);
 				
 			while (sc.hasNextLine())
 			{
 				String line = sc.nextLine();
 				output += line + "\n";
-		//		System.out.println(output);
+	
 				
 				
 			}
 			sc.close();
 			return output;
-		/*	
-		}
-			else {
-				return "Cart_" + name + ".txt not found";
-			}
-		*/
-			
+				
 		}
 		
 		public void AddItem(Item addthis, int decQuantity) throws IOException
@@ -136,16 +120,7 @@ public class ShoppingCart extends User {
 			
 			
 		}
-		private static int numberOfLines(File infile) throws FileNotFoundException
-		{
-			Scanner sc = new Scanner (infile);
-			int counter = 0;
-			while (sc.hasNextLine() ) {
-				counter = counter + 1;
-			}
-			sc.close();
-			return counter;
-		}
+		
 		
 		private static LinkedList<String> storeLines (LinkedList<String> list,File infile) throws FileNotFoundException {
 			
@@ -164,10 +139,7 @@ public class ShoppingCart extends User {
 		private String updateItemFile(String filename, String serial, int decQuantity) throws IOException {
 			
 			File textfile = new File(filename); // Opens textfile for Books
-			//Scanner sc = new Scanner (textfile); // Opens scanner which will read through textfile
-			
-			//int numberOfItems = numberOfLines(textfile);  // Counts number of items/lines in Books.txt
-			
+						
 			LinkedList<String> lines = new LinkedList<String>(); // Create String array that to store each line in textfile
 			storeLines(lines,textfile); // Stores each line in textfile as an element in a String LinkedList
 			
@@ -187,16 +159,15 @@ public class ShoppingCart extends User {
 					if (filename.equals("Cart_" + this.username + ".txt")) {
 
 						quantity = quantity + decQuantity; // decrements the quantity property of this line/item
-						// increment the item quantity in the linkedList
-					//	ListIterator<Item> itrCa = cartList.listIterator();
+				
 			        	while(itrC.hasNext()) {
 			        		Item currI = itrC.next();
 			        		if (currI.sNo == Integer.parseInt(serial)) {
-			        			// could change updateItemFile so that it accepts 
+			        		
 			        			currI.quantity = quantity;
 			        			break;
 			        			}
-			        		// also want to include something here to add the item to the shopping cart	
+			        		
 			        		}
 			        	itrC = cartList.listIterator();
 					}
