@@ -95,9 +95,9 @@ public class Audio extends Item {
 			return audio;
 		}
 		
-		//@Override
+		@Override
 		// might want to change the signatures of getPrice. 
-		public double getPrice(int serial, String filename) { //override 
+		public double getPrice() { //override 
 			return this.price;
 			/*
 			try {

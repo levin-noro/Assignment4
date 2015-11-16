@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CD extends Audio {
-	//@Override
+	@Override
 	public double getPrice() { // override to get the item price and add 2% (Environment Tax)
 		/*double priceWithTax = 0;
 		try {

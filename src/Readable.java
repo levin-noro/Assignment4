@@ -93,9 +93,9 @@ public class Readable extends Item {
 			return readables;
 		}
 		
-		//@Override
+		@Override
 		// might want to change the signatures of getPrice. 
-		public double getPrice(int serial, String filename) { //override 
+		public double getPrice() { //override 
 			return this.price;
 			/*
 			try {
