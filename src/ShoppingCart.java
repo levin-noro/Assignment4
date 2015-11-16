@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class ShoppingCart extends User {
 		
 		private File cartFile;
-		private LinkedList<Item> cartList = new LinkedList<Item>();
+		LinkedList<Item> cartList = new LinkedList<Item>();
 		private ListIterator<Item> itrC = cartList.listIterator();
 		
 		public ShoppingCart(User currUser) {
@@ -250,7 +250,7 @@ public class ShoppingCart extends User {
     			add.quantity = decQuantity;
     			
     			
-				cartList.add(addthis);
+				cartList.add(add);
 				
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
     			Date today = Calendar.getInstance().getTime();        
@@ -286,7 +286,7 @@ public class ShoppingCart extends User {
 	        			// add the item to the LinkedList
 	        			Item add = deepCopyItem(addthis);
 	        			add.quantity = decQuantity;
-	        			this.cartList.add(addthis);
+	        			this.cartList.add(add);
 	        			
 	        			// This next section creates a string containing the sNo, title, date, and quantity 
 	        			// This string will be appended to cartFile

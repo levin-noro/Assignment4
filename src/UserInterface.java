@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class UserInterface{
@@ -228,7 +229,8 @@ public class UserInterface{
 			        	System.out.println("Checkout!"); System.out.println();
 			        	
 			        	System.out.println("Billing Information:");
-			        	System.out.println("Name\t\t\t\tQuantity\tPrice");
+			        	System.out.println(String.format("%-30s","Name")+String.format("%-20s", "Quantity") + String.format("%-20s","Price"));
+			        	
 			        	
 			        	LinkedList<Item> list =  SC.cartList;
 			        	
@@ -241,7 +243,7 @@ public class UserInterface{
 			        	{
 			        		Item item = iterator.next();
 
-			        		System.out.println(item.title + "\t\t\t\t" + item.quantity + "\t" + item.price);
+			        		System.out.println(String.format("%-30s", item.title.trim()) + String.format("%-20s", item.quantity) + String.format("%-20s",item.price));
 			        		
 			        		total += item.price * item.quantity;
 			        		total_w_etax += item.getPrice() * item.quantity;
@@ -249,25 +251,25 @@ public class UserInterface{
 			        	}
 			        	
 			        	double etax = total_w_etax - total;
-			        	System.out.println("Environment Tax \t\t 2% \t\t\t\t" + etax);
+			        	System.out.println(String.format("%-30s","Environment Tax") + String.format("%-20s","2%") + String.format("%-20s", Double.toString(etax)));
 			        	
 			        	double hst = total * 0.13;
 			        	
-			        	System.out.println("\tHST \t\t 13% \t\t\t\t" + hst);
+			        	System.out.println(String.format("%-23s","\tHST")+String.format("%-20s", "13%") + String.format("%-20s",Double.toString(hst)));
 			        	
 			        	double shipping = total * 0.10;
 			        	
-			        	System.out.println("\tShipping \t\t 10% \t\t\t\t" + shipping);
+			        	System.out.println(String.format("%-23s","\tShipping") + String.format("%-20s", "10%") + String.format("%-20s",Double.toString(shipping)));
 			        	
 			        	double total_w_alltax = total + etax + hst + shipping;
 			        	
-			        	System.out.println("\tTotal \t\t    \t\t\t\t" + total_w_alltax + "$");
+			        	System.out.println(String.format("%-23s","\tTotal") + String.format("%-20s", " ") + String.format("%-20s", Double.toString(total_w_alltax) + "$"));
 			        	
 			        	System.out.println("Are you sure you want to pay? ");
 			        	
 			        	String P10choice = "";
 			        	
-			        	while (P10choice.equals("yes") || P10choice.equals("no")) 
+			        	while (!P10choice.equals("yes") && !P10choice.equals("no")) 
 			        	{
 			        		P10choice = scanner.next();
 			        	
@@ -279,11 +281,16 @@ public class UserInterface{
 				        	}
 				        	else if (P10choice.equals("yes")) 
 				        	{
-				        		System.out.println("Confirmation ID: U" + );
-				        		System.out.println("Items shipped to: Mr." + currUser);
+				        		// 1000 to be replaced by generated confirmation ID number
+				        		System.out.println("Confirmation ID: U" + 1000);
+				        		System.out.println("Items shipped to: Mr." + currUser.username);
 				        		exitUI = true;
 				        	}
+				        	else {
+				        		System.out.println("Please answer yes or no:");
+				        	}
 			        	}
+			        	break;
 			 
 			    }
 				
