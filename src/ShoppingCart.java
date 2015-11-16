@@ -17,7 +17,8 @@ import java.util.Scanner;
 public class ShoppingCart extends User {
 		
 		private File cartFile;
-		LinkedList<Item> cartList = new LinkedList<Item>();
+		private LinkedList<Item> cartList = new LinkedList<Item>();
+		private ListIterator<Item> itrC = cartList.listIterator();
 		
 		public ShoppingCart(User currUser) {
 			super(currUser.username);
@@ -53,6 +54,7 @@ public class ShoppingCart extends User {
 			{
 				String line = sc.nextLine();
 				output += line + "\n";
+		//		System.out.println(output);
 				
 				
 			}
@@ -186,7 +188,7 @@ public class ShoppingCart extends User {
 
 						quantity = quantity + decQuantity; // decrements the quantity property of this line/item
 						// increment the item quantity in the linkedList
-						ListIterator<Item> itrC = cartList.listIterator();
+					//	ListIterator<Item> itrCa = cartList.listIterator();
 			        	while(itrC.hasNext()) {
 			        		Item currI = itrC.next();
 			        		if (currI.sNo == Integer.parseInt(serial)) {
@@ -196,6 +198,7 @@ public class ShoppingCart extends User {
 			        			}
 			        		// also want to include something here to add the item to the shopping cart	
 			        		}
+			        	itrC = cartList.listIterator();
 					}
 					else {
 						
@@ -231,7 +234,8 @@ public class ShoppingCart extends User {
 				
 				updated.println(updatedLine); 
 			}
-			
+			itrUL = lines.listIterator();
+			itrUpdate = updatedLines.listIterator();
 			updated.close();
 			
 			
@@ -242,6 +246,10 @@ public class ShoppingCart extends User {
 		private void updateCart(Item addthis, int decQuantity) throws IOException{
 			
 			if (cartList.isEmpty()) {
+				Item add = deepCopyItem(addthis);
+    			add.quantity = decQuantity;
+    			
+    			
 				cartList.add(addthis);
 				
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -250,21 +258,24 @@ public class ShoppingCart extends User {
     			
     			String newItem = Integer.toString(addthis.sNo) + ", " + addthis.title + ", " + reportDate + ", " + Integer.toString(decQuantity);
     					
-    			Writer output;
+    			BufferedWriter output;
     			output = new BufferedWriter(new FileWriter(this.cartFile));  //clears file every time
     			
     			
-    			output.append(newItem);
+    			output.append(newItem); output.newLine();
+    			
     			output.close();
 			}
 			else {
+				LinkedList<Item> temp = deepCopyList(cartList);
+				ListIterator<Item> itr = temp.listIterator();
 				
-			
-				ListIterator<Item> itrC = cartList.listIterator();
+				while (itr.hasNext()) {
 	        	
 		       	
-	        	while(itrC.hasNext()) {
-	        		Item currI = itrC.next();
+	        	
+	        		Item currI = itr.next();
+	        		
 	        		if (currI.sNo == addthis.sNo) {
 	        			// could change updateItemFile so that it accepts 
 	        			updateItemFile("Cart_" + this.username + ".txt", Integer.toString(addthis.sNo), decQuantity);
@@ -273,6 +284,8 @@ public class ShoppingCart extends User {
 	        		}
 	        		else {
 	        			// add the item to the LinkedList
+	        			Item add = deepCopyItem(addthis);
+	        			add.quantity = decQuantity;
 	        			this.cartList.add(addthis);
 	        			
 	        			// This next section creates a string containing the sNo, title, date, and quantity 
@@ -288,18 +301,49 @@ public class ShoppingCart extends User {
 	        			// representation of a date with the defined format.
 	        			String reportDate = df.format(today);
 	        			
-	        			String newItem = Integer.toString(addthis.sNo) + ", " + addthis.title + ", " + reportDate + ", " + Integer.toString(decQuantity);
-	        					
-	        			Writer output;
-	        			output = new BufferedWriter(new FileWriter(this.cartFile));  //clears file every time
+	        			String aItem = Integer.toString(addthis.sNo) + ", " + addthis.title + ", " + reportDate + ", " + Integer.toString(decQuantity);
 	        			
+	        			PrintWriter outputA = new PrintWriter(new BufferedWriter(new FileWriter(this.cartFile, true)));  //clears file every time
 	        			
-	        			output.append(newItem);
-	        			output.close();
+	        			outputA.println(aItem); outputA.println();
+	        			
+	        			outputA.close();
 	        			// add the item to the file
 	        		}
 	        	}
+	      //  	itrC = cartList.listIterator();
 			}
+		}
+		
+		public static Item deepCopyItem(Item copythis) {
+			Item temp = null;
+			if (copythis.itemtype.equals("Book") || copythis.itemtype.equals("eBook")) {
+				temp = new Readable();
+				temp.price = copythis.price;
+				temp.itemtype = copythis.itemtype;
+				temp.sNo = copythis.sNo;
+				temp.title = copythis.title;
+			}
+			if (copythis.itemtype.equals("CD") || copythis.itemtype.equals("MP3")) {
+				temp = new Audio();
+				temp.price = copythis.price;
+				temp.itemtype = copythis.itemtype;
+				temp.sNo = copythis.sNo;
+				temp.title = copythis.title;
+			}
+			return temp;
+			
+			
+		}
+		
+		public static LinkedList<Item> deepCopyList(LinkedList<Item> a) {
+			LinkedList<Item> temp = new LinkedList<Item>();
+			ListIterator<Item> itrA = a.listIterator();
+			while(itrA.hasNext()) {
+				Item iT = itrA.next();
+				temp.add(iT);
+			}
+			return temp;
 		}
 		
 }

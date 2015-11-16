@@ -10,7 +10,7 @@ public abstract class Item{
 		protected String itemtype;
 		// might want to change this signature
 //		public abstract String[] getInfo(String filename, int lineNumber);
-		public abstract double getPrice(int serial, String filename);
+		public abstract double getPrice();
 		
 }
 	

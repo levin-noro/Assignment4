@@ -5,7 +5,7 @@ import java.io.IOException;
 //import HWK4_karskim.Item.Readable;
 
 public class Book extends Readable {
-		//@Override commented this out for now. 
+		@Override // commented this out for now. 
 		public double getPrice() { // override to get the item price and add 2% (Environment Tax)
 			/*double priceWithTax = 0;
 			try {

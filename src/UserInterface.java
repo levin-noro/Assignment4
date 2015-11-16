@@ -123,15 +123,12 @@ public class UserInterface{
 			        	break;
 			        	
 			        case 6:
-			        	// view contents of shopping cart. should get method from shoppingcart.java
-			        	// doesn't go to checkout
+			        	
 			        		        	
 			        	System.out.print(SC.getContent());  
-			        	
 			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.\nChoose your option:\n\n");
-			        	
 			        	int op = Integer.parseInt(scanner.next());
-			        	if (op == -1) {currentPage(5);}
+			        	if (op == -1) {currentPage(4);}
 			        	if (op == 0) {currentPage(9);}
 			        	
 			        	break;
