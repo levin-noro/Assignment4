@@ -33,7 +33,9 @@ public class UserInterface{
 			
 		}
 		
-		
+		public void makeConfirmID() {
+			
+		}
 		
 	
 		
@@ -224,7 +226,64 @@ public class UserInterface{
 			        	// we need to check what happens if the person does not want to pay. do you sign out, or do you go back to a previous menu. 
 			        	// check how we're supposed to generate confirmation IDs, do we just increment the value by 1 (so the second user would get an ID of U1001)
 			        	System.out.println("Checkout!"); System.out.println();
-			        	exitUI = true;
+			        	
+			        	System.out.println("Billing Information:");
+			        	System.out.println("Name\t\t\t\tQuantity\tPrice");
+			        	
+			        	LinkedList<Item> list =  SC.cartList;
+			        	
+			        	ListIterator<Item> iterator = list.listIterator();
+			        	
+			        	double total = 0;
+			        	double total_w_etax = 0;
+			        	
+			        	while (iterator.hasNext())
+			        	{
+			        		Item item = iterator.next();
+
+			        		System.out.println(item.title + "\t\t\t\t" + item.quantity + "\t" + item.price);
+			        		
+			        		total += item.price * item.quantity;
+			        		total_w_etax += item.getPrice() * item.quantity;
+			        		
+			        	}
+			        	
+			        	double etax = total_w_etax - total;
+			        	System.out.println("Environment Tax \t\t 2% \t\t\t\t" + etax);
+			        	
+			        	double hst = total * 0.13;
+			        	
+			        	System.out.println("\tHST \t\t 13% \t\t\t\t" + hst);
+			        	
+			        	double shipping = total * 0.10;
+			        	
+			        	System.out.println("\tShipping \t\t 10% \t\t\t\t" + shipping);
+			        	
+			        	double total_w_alltax = total + etax + hst + shipping;
+			        	
+			        	System.out.println("\tTotal \t\t    \t\t\t\t" + total_w_alltax + "$");
+			        	
+			        	System.out.println("Are you sure you want to pay? ");
+			        	
+			        	String P10choice = "";
+			        	
+			        	while (P10choice.equals("yes") || P10choice.equals("no")) 
+			        	{
+			        		P10choice = scanner.next();
+			        	
+				        	P10choice = P10choice.toLowerCase();
+				        	
+				        	if (P10choice.equals("no")) 
+				        	{
+				        		currentPage(4);
+				        	}
+				        	else if (P10choice.equals("yes")) 
+				        	{
+				        		System.out.println("Confirmation ID: U" + );
+				        		System.out.println("Items shipped to: Mr." + currUser);
+				        		exitUI = true;
+				        	}
+			        	}
 			 
 			    }
 				
