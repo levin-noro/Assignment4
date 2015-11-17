@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class UserInterface{
@@ -67,7 +68,7 @@ public class UserInterface{
 			            
 			        case 2:
 			        	
-			        	System.out.println("Choose your username:\n"); 
+			        	System.out.println("Choose your username:"); 
 			        	String newname = scanner.next();
 				        User newUser = new User(newname);
 					    
@@ -84,7 +85,7 @@ public class UserInterface{
 			            
 			        case 3:
 			        	
-			        	System.out.println("Enter your username:"); System.out.println();
+			        	System.out.println("Enter your username:");
 			        	String name = scanner.next();
 			        	currUser = new User(name);
 			        	SC = new ShoppingCart(currUser);
@@ -106,17 +107,17 @@ public class UserInterface{
 			        	
 			        case 4:
 			        	
-			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \n\nChoose your option: \n\n ");
+			        	System.out.println("1.View Items By Category \n2.View Shopping Cart \n3.Sign Out \n\nChoose your option:");
 			        	int op4 = Integer.parseInt(scanner.next());
 			        	if (op4 == 1) {currentPage(5);}
 			        	if (op4 == 2) {currentPage(6);}
-			        	if (op4 == 3) {currentPage(1);}
+			        	if (op4 == 3) {System.out.println("Signing you out."); exitUI = true; } // currentPage(1);
 			        	
 			        	break;
 			        	
 			        case 5:
 			        	
-			        	System.out.println("1.Readables \n2.Audio \n\nChoose your option:\n\nPress -1 to return to the previous menu");
+			        	System.out.println("1.Readables \n2.Audio \n\nChoose your option:\nPress -1 to return to the previous menu");
 			        	int option = Integer.parseInt(scanner.next());
 			        	if (option == 1) {currentPage(7);}
 			        	if (option == 2) {currentPage(8);}
@@ -128,7 +129,7 @@ public class UserInterface{
 			        	
 			        		        	
 			        	System.out.print(SC.getContent());  
-			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.\nChoose your option:\n\n");
+			        	System.out.println("Press -1 to go to the previous menu or press 0 to go to CheckOut.\nChoose your option:");
 			        	int op = Integer.parseInt(scanner.next());
 			        	if (op == -1) {currentPage(4);}
 			        	if (op == 0) {currentPage(9);}
@@ -228,7 +229,8 @@ public class UserInterface{
 			        	System.out.println("Checkout!"); System.out.println();
 			        	
 			        	System.out.println("Billing Information:");
-			        	System.out.println("Name\t\t\t\tQuantity\tPrice");
+			        	System.out.println(String.format("%-30s","Name")+String.format("%-20s", "Quantity") + String.format("%-20s","Price"));
+			        	
 			        	
 			        	LinkedList<Item> list =  SC.cartList;
 			        	
@@ -241,7 +243,7 @@ public class UserInterface{
 			        	{
 			        		Item item = iterator.next();
 
-			        		System.out.println(item.title + "\t\t\t\t" + item.quantity + "\t" + item.price);
+			        		System.out.println(String.format("%-30s", item.title.trim()) + String.format("%-20s", item.quantity) + String.format("%-20s",item.price));
 			        		
 			        		total += item.price * item.quantity;
 			        		total_w_etax += item.getPrice() * item.quantity;
@@ -249,25 +251,25 @@ public class UserInterface{
 			        	}
 			        	
 			        	double etax = total_w_etax - total;
-			        	System.out.println("Environment Tax \t\t 2% \t\t\t\t" + etax);
+			        	System.out.println(String.format("%-30s","Environment Tax") + String.format("%-20s","2%") + String.format("%-20s", Double.toString(etax)));
 			        	
 			        	double hst = total * 0.13;
 			        	
-			        	System.out.println("\tHST \t\t 13% \t\t\t\t" + hst);
+			        	System.out.println(String.format("%-23s","\tHST")+String.format("%-20s", "13%") + String.format("%-20s",Double.toString(hst)));
 			        	
 			        	double shipping = total * 0.10;
 			        	
-			        	System.out.println("\tShipping \t\t 10% \t\t\t\t" + shipping);
+			        	System.out.println(String.format("%-23s","\tShipping") + String.format("%-20s", "10%") + String.format("%-20s",Double.toString(shipping)));
 			        	
 			        	double total_w_alltax = total + etax + hst + shipping;
 			        	
-			        	System.out.println("\tTotal \t\t    \t\t\t\t" + total_w_alltax + "$");
+			        	System.out.println(String.format("%-23s","\tTotal") + String.format("%-20s", " ") + String.format("%-20s", Double.toString(total_w_alltax) + "$"));
 			        	
 			        	System.out.println("Are you sure you want to pay? ");
 			        	
 			        	String P10choice = "";
 			        	
-			        	while (P10choice.equals("yes") || P10choice.equals("no")) 
+			        	while (!P10choice.equals("yes") && !P10choice.equals("no")) 
 			        	{
 			        		P10choice = scanner.next();
 			        	
@@ -279,11 +281,16 @@ public class UserInterface{
 				        	}
 				        	else if (P10choice.equals("yes")) 
 				        	{
-				        		System.out.println("Confirmation ID: U" + );
-				        		System.out.println("Items shipped to: Mr." + currUser);
+				        		// 1000 to be replaced by generated confirmation ID number
+				        		System.out.println("Confirmation ID: U" + 1000);
+				        		System.out.println("Items shipped to: Mr." + currUser.username);
 				        		exitUI = true;
 				        	}
+				        	else {
+				        		System.out.println("Please answer yes or no:");
+				        	}
 			        	}
+			        	break;
 			 
 			    }
 				
