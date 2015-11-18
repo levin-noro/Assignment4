@@ -53,7 +53,7 @@ public class UserInterface{
 			            int page = Integer.parseInt(scanner.next());
 			           	if (page == 1) {currentPage(3);}
 			        	if (page == 2) {currentPage(2);}
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        	
 			            
@@ -70,7 +70,7 @@ public class UserInterface{
 							e.printStackTrace();
 						}
 					   	currentPage(1);
-					   	break;
+					   	System.out.println("\n\n\n"); break;
 			        	
 			   
 			            
@@ -94,7 +94,7 @@ public class UserInterface{
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-			        	break;
+						System.out.println("\n\n\n"); break;
 			        	
 			        case 4:
 			        	
@@ -104,7 +104,7 @@ public class UserInterface{
 			        	if (op4 == 2) {currentPage(6);}
 			        	if (op4 == 3) {System.out.println("Signing you out."); exitUI = true; } // currentPage(1);
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 5:
 			        	
@@ -114,7 +114,7 @@ public class UserInterface{
 			        	if (option == 2) {currentPage(8);}
 			        	if (option == -1) {currentPage(4);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 6:
 			        	
@@ -125,7 +125,7 @@ public class UserInterface{
 			        	if (op == -1) {currentPage(4);}
 			        	if (op == 0) {currentPage(9);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 7:
 			        	Readable r = new Readable();
@@ -170,7 +170,7 @@ public class UserInterface{
 			        	if (op7 == -2) {currentPage(5);}
 			        	if (op7 == 0) {currentPage(9);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        	
 			        case 8:
@@ -211,7 +211,7 @@ public class UserInterface{
 			        	if (op8 == -2) {currentPage(5);}
 			        	if (op8 == 0) {currentPage(9);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 9:
 			        	// checkout
@@ -280,7 +280,7 @@ public class UserInterface{
 				        		System.out.println("Please answer yes or no:");
 				        	}
 			        	}
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			    }	
 			}
 			while (exitUI == false);
