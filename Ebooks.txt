@@ -1,2 +1,2 @@
-201, Harry Potter All Vol., ZZZ, 200, 10,eBook
-202, Twilight, DSS, 250, 12,eBook
+201, Harry Potter All Vol., ZZZ, 200, 6,eBook
+202, Twilight, DSS, 250, 7,eBook

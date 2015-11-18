@@ -35,7 +35,7 @@ public class Readable extends Item {
 			        	read.price = Integer.parseInt(ar[3].trim());
 			        	read.quantity = Integer.parseInt(ar[4].trim());
 			        	read.itemtype = ar[5];
-			        	
+			       
 		        	}
 		        
 		        }
@@ -89,6 +89,7 @@ public class Readable extends Item {
 		@Override
 		// might want to change the signatures of getPrice. 
 		public double getPrice() { //override 
+		
 			return this.price;
 		}
 		

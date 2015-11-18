@@ -38,15 +38,6 @@ public class UserInterface{
 			
 		}
 		
-	
-		
-		//
-		
-		/* UserInterface ui = new UserInterface();
-
-			if(ui.getCurrentPage() == 1) {
-  			ui.changeCurrentPage(2) */
-
 		public int changeCurrentPage() throws IOException {// This method is for page navigation. It should change to current page and show the content.
 			boolean exitUI = false;
 			Scanner scanner = new Scanner(System.in);
@@ -226,7 +217,6 @@ public class UserInterface{
 			        	// checkout
 			        	// we need to check what happens if the person does not want to pay. do you sign out, or do you go back to a previous menu. 
 			        	// check how we're supposed to generate confirmation IDs, do we just increment the value by 1 (so the second user would get an ID of U1001)
-			        	System.out.println("Checkout!"); System.out.println();
 			        	
 			        	System.out.println("Billing Information:");
 			        	System.out.println(String.format("%-30s","Name")+String.format("%-20s", "Quantity") + String.format("%-20s","Price"));
@@ -291,16 +281,11 @@ public class UserInterface{
 				        	}
 			        	}
 			        	break;
-			 
-			    }
-				
+			    }	
 			}
 			while (exitUI == false);
 			scanner.close();
 			return 0;
-				            
-			   
-			
 		}
 }
 

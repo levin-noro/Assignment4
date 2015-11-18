@@ -15,18 +15,18 @@ import java.util.Scanner;
 
 public class ShoppingCart extends User {
 		
-		private File cartFile;
-		LinkedList<Item> cartList = new LinkedList<Item>();
-		private ListIterator<Item> itrC = cartList.listIterator();
+		private File cartFile; // file that contains details about items (sNo, title, date purchased, quantity) that the user wants to purchase 
+		LinkedList<Item> cartList = new LinkedList<Item>(); // LinkedList of Items where items that the user wants to purchase will be stored
+		private ListIterator<Item> itrC = cartList.listIterator(); // iterator over this list
 		
-		public ShoppingCart(User currUser) {
-			super(currUser.username);
+		public ShoppingCart(User currUser) { // constructor for ShoppingCart class, takes a User object as input
+			super(currUser.username); // initializes username as the User's username
 			
 			
 			try {
 	    		 
-				this.cartFile = new File("Cart_" + currUser.username + ".txt");
-				cartFile.createNewFile();  
+				this.cartFile = new File("Cart_" + currUser.username + ".txt"); // initializes cartFile as a file with name Cart_username.txt
+				cartFile.createNewFile();  // creates the file
 		
 		    	} catch (IOException e) {
 			      e.printStackTrace();
@@ -37,22 +37,22 @@ public class ShoppingCart extends User {
 		
 		public String getContent() throws IOException { // return the content of the shopping cart
 			
-			String output = "";
-			Scanner sc = new Scanner (this.cartFile);
+			String output = ""; // String output initialized as an empty string
+			Scanner sc = new Scanner (this.cartFile); // a new scanner is initialized for the cartFile 
 				
-			while (sc.hasNextLine())
+			while (sc.hasNextLine()) // do the following while there are still lines in the file
 			{
-				String line = sc.nextLine();
-				output += line + "\n";
+				String line = sc.nextLine(); // initialize the String line as the next line of the file read by the scanner
+				output += line + "\n"; // add a newline character to the end of the line (so that the string output can be printed line-by-line as in the file
 	
 				
 				
 			}
-			sc.close();
-			return output;
+			sc.close(); // close the scanner
+			return output; // return the String output
 				
 		}
-		
+		// add 
 		public void AddItem(Item addthis, int decQuantity) throws IOException
 		// maybe rewrite this function so that it only takes the object (type Item? I'm assuming that will work for 
 		// both readable and audio types) and the quantity
@@ -70,85 +70,79 @@ public class ShoppingCart extends User {
 		// associated with an existing user anyway
 		
 		{
-			// Checks if user exits
-			//boolean userExists = searchFile("Users.txt",name);
 			
-			//if (userExists) {
 				
-				String filename = "";
-				switch (addthis.itemtype) // Options for item types
+				String filename = ""; // initializes an empty string called filename. 
+				switch (addthis.itemtype) // choose a case based on the type of the item
 				{
-					case ("Book") :// Once item is given
-						filename = "Books.txt";
+					case ("Book") : // if the item is a book
+						filename = "Books.txt"; // Books.txt will be updated
 						break;
-					case ("eBook") :
-						filename = "eBooks.txt";
+					case ("eBook") : // if the item is an ebook
+						filename = "eBooks.txt"; // eBooks.txt will be updated
 						break;
-					case ("CD") :
-						filename = "CDs.txt";
+					case ("CD") : // if the item is a CD
+						filename = "CDs.txt"; // CDs.txt will be updated
 						break;
-					case ("MP3") :
-						filename = "MP3.txt";
+					case ("MP3") : // if the item is an MP3
+						filename = "MP3.txt"; // MP3.txt will be updated
 						break;
 				}
-						// Decrements item from Books.txt
-				// might not need to store properties in an array
-				
-				String added = updateItemFile(filename, Integer.toString(addthis.sNo), decQuantity);
-				
-				//update cart checks if the item is already in the shopping cart
-				// if it is, it modifies the quantity in both the file and the LinkedList
-				// if it isn't, it adds the item to the file and to the LinkedList
-				if (added.equals("The amount you requested of this item exceeds the amount we have in stock.")) {System.out.println(added);}
-				else if (added.equals("Item updated")) {
 						
-				/* 
-				 if the item exists in the cart, the quantity of the item is incremented in the file 
-				 if it does not exist, a line containing sNo, title, date, quantity is appended to the end of the cartFile
-				 every time the page readable or audio shopping page is called a new readable object is created, along with a 
-				 linkedList containing up to date item info. 
+				// updateFileitem is called with the filename of the item, the serial number of the item, and the quantity requested by the user
+				String added = updateItemFile(filename, Integer.toString(addthis.sNo), decQuantity); // the result of updateItemFile is stored in a string Added
+				
+				
+				// if the quantity requested by the user exceeds the amount in stock, an error message is printed
+				if (added.equals("The amount you requested of this item exceeds the amount we have in stock.")) {System.out.println(added);}
+				else if (added.equals("Item updated")) { // if there was enough of the item in stock and the file containing stock info was updated
+						
+				
+				/*
+				update cart checks if the item is already in the shopping cart
+				if it is, it modifies the quantity in both the file and the LinkedList
+				if it isn't, it adds the item to the file and to the LinkedList 
+				if the item exists in the cart, the quantity of the item is incremented in the file 
+				if it does not exist, a line containing sNo, title, date, quantity is appended to the end of the cartFile
+				every time the page readable or audio shopping page is called a new readable object is created, along with a 
+				linkedList containing up to date item info. 
 				 
 				 */
 					
 					updateCart(addthis, decQuantity);
 				}
-						
-						
-				
-				
-			//} else System.out.println("Oops! User name does not exist.");
-			
-			
+	
 		}
 		
-		
+		// this function reads a file and stores each line of the file in a LinkedList. It throws an exception if the file does not exist.
 		private static LinkedList<String> storeLines (LinkedList<String> list,File infile) throws FileNotFoundException {
 			
-			Scanner sc = new Scanner (infile);
-			while(sc.hasNextLine()) {
-				list.add(sc.nextLine());
+			Scanner sc = new Scanner (infile); // new scanner initialized for the file
+			while(sc.hasNextLine()) { // while there are still lines in the file
+				list.add(sc.nextLine()); // add the line to the list
 			}
-			sc.close();
-			return list;
+			sc.close(); // close the scanner
+			return list; // return the linked list containing the lines from the file
 		}
 		// maybe updateItemFile should receive as parameters the object and the quantity.
 		// the serial number would be accessible through the object. 
 		// the correct filename would be chosen based on the value of itemtype. 
 		
-		
-		private String updateItemFile(String filename, String serial, int decQuantity) throws IOException {
+		// this function updates either the cartFile or the stock file (ex. Books.txt) depending on which filename is passed
+		// if it is the cartFile, the quantity of the item is incremented (if the item exists) or the item is added to the cartList and cartFile
+		// if it is the stock file, the quantity of the item is decremented, unless there is not enough of it in stock, in which case it returns an error message
+		private String updateItemFile(String filename, String serial, int decQuantity) throws IOException { // an exception is thrown if the file passed to the function does not exist
 			
-			File textfile = new File(filename); // Opens textfile for Books
+			File textfile = new File(filename); // Opens textfile for file passed to the function
 						
 			LinkedList<String> lines = new LinkedList<String>(); // Create String array that to store each line in textfile
 			storeLines(lines,textfile); // Stores each line in textfile as an element in a String LinkedList
 			
 			LinkedList<String> updatedLines = new LinkedList<String>(); // String that will stores existing lines along with any modified lines
 			
-			//String[] updatedItemLine = null;
-			ListIterator<String> itrUL = lines.listIterator();
-			while(itrUL.hasNext()) {
-        		String line = itrUL.next();
+			ListIterator<String> itrUL = lines.listIterator(); // iterator to iterate over the linkedlist containing the lines of the file
+			while(itrUL.hasNext()) { // while there are still elements in the linkedList
+        		String line = itrUL.next(); // a String line is initialized with the next element in the LinkedList accessed by the iterator
 			
 				String [] properties = line.split(","); // Splits line into its properties
 				
@@ -213,7 +207,7 @@ public class ShoppingCart extends User {
 			//return updatedItemLine;
 			return "Item updated";
 		}
-		// this needs to be updated
+		
 		private void updateCart(Item addthis, int decQuantity) throws IOException{
 			
 			if (cartList.isEmpty()) {
@@ -240,7 +234,7 @@ public class ShoppingCart extends User {
 			else {
 				LinkedList<Item> temp = deepCopyList(cartList);
 				ListIterator<Item> itr = temp.listIterator();
-				
+				boolean found = false;
 				while (itr.hasNext()) {
 	        	
 		       	
@@ -248,60 +242,77 @@ public class ShoppingCart extends User {
 	        		Item currI = itr.next();
 	        		
 	        		if (currI.sNo == addthis.sNo) {
-	        			// could change updateItemFile so that it accepts 
+	        			// could change updateItemFile so that it accepts
+	        			found = true;
 	        			updateItemFile("Cart_" + this.username + ".txt", Integer.toString(addthis.sNo), decQuantity);
 	        			break;
 	        		// also want to include something here to add the item to the shopping cart	
 	        		}
-	        		else {
-	        			// add the item to the LinkedList
-	        			Item add = deepCopyItem(addthis);
-	        			add.quantity = decQuantity;
-	        			this.cartList.add(add);
-	        			
-	        			// This next section creates a string containing the sNo, title, date, and quantity 
-	        			// This string will be appended to cartFile
-	        			
-	        			// Create an instance of SimpleDateFormat used for formatting 
-	        			// the string representation of date (month/day/year)
-	        			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-	        			
-	        			// Get the date today using Calendar object.
-	        			Date today = Calendar.getInstance().getTime();        
-	        			// Using DateFormat format method we can create a string 
-	        			// representation of a date with the defined format.
-	        			String reportDate = df.format(today);
-	        			
-	        			String aItem = Integer.toString(addthis.sNo) + ", " + addthis.title + ", " + reportDate + ", " + Integer.toString(decQuantity);
-	        			
-	        			PrintWriter outputA = new PrintWriter(new BufferedWriter(new FileWriter(this.cartFile, true)));  //clears file every time
-	        			
-	        			outputA.println(aItem); outputA.println();
-	        			
-	        			outputA.close();
-	        			// add the item to the file
-	        		}
+	        		
 	        	}
+				if (!found) {
+        			// add the item to the LinkedList
+        			Item add = deepCopyItem(addthis);
+        			add.quantity = decQuantity;
+        			this.cartList.add(add);
+        			
+        			// This next section creates a string containing the sNo, title, date, and quantity 
+        			// This string will be appended to cartFile
+        			
+        			// Create an instance of SimpleDateFormat used for formatting 
+        			// the string representation of date (month/day/year)
+        			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        			
+        			// Get the date today using Calendar object.
+        			Date today = Calendar.getInstance().getTime();        
+        			// Using DateFormat format method we can create a string 
+        			// representation of a date with the defined format.
+        			String reportDate = df.format(today);
+        			
+        			String aItem = Integer.toString(addthis.sNo) + ", " + addthis.title + ", " + reportDate + ", " + Integer.toString(decQuantity);
+        			
+        			PrintWriter outputA = new PrintWriter(new BufferedWriter(new FileWriter(this.cartFile, true)));  
+        			
+        			outputA.println(aItem);
+        			
+        			outputA.close();
+        			// add the item to the file
+        		}
 	      //  	itrC = cartList.listIterator();
 			}
 		}
 		
 		public static Item deepCopyItem(Item copythis) {
 			Item temp = null;
-			if (copythis.itemtype.equals("Book") || copythis.itemtype.equals("eBook")) {
-				temp = new Readable();
+			if (copythis.itemtype.equals("Book")) {
+				temp = new Book();
 				temp.price = copythis.price;
 				temp.itemtype = copythis.itemtype;
 				temp.sNo = copythis.sNo;
 				temp.title = copythis.title;
 			}
-			if (copythis.itemtype.equals("CD") || copythis.itemtype.equals("MP3")) {
-				temp = new Audio();
+			if (copythis.itemtype.equals("eBook")) {
+				temp = new eBook();
 				temp.price = copythis.price;
 				temp.itemtype = copythis.itemtype;
 				temp.sNo = copythis.sNo;
 				temp.title = copythis.title;
 			}
+			if (copythis.itemtype.equals("CD")) {
+				temp = new CD();
+				temp.price = copythis.price;
+				temp.itemtype = copythis.itemtype;
+				temp.sNo = copythis.sNo;
+				temp.title = copythis.title;
+			}
+			if (copythis.itemtype.equals("MP3")) {
+				temp = new MP3();
+				temp.price = copythis.price;
+				temp.itemtype = copythis.itemtype;
+				temp.sNo = copythis.sNo;
+				temp.title = copythis.title;
+			}
+			
 			return temp;
 			
 			
