@@ -6,18 +6,19 @@ import java.util.Scanner;
 
 
 public class User {
-	private String username;
+	String username;
 	// create a class constructor that calls username
 	//User (String name) {username = name;} //
+	public User(String name) {this.username = name;}
 	
 	public String getUsername(String name, int option) throws IOException { // stores the username.
 	// usernames of all registered users are stored in the file Users.txt
 		
+		
 		File inFile = new File("Users.txt");
 		
 		if (option == 1) 
-		{
-			
+		{	
 			if (searchFile(inFile, name)) 
 			{
 				return "Hello Mr." + name;
@@ -26,21 +27,17 @@ public class User {
 			{
 				return "No Access";
 			}
-
-			
 		}
 		
 		else if (option == 2) 
 		{
 			String message = writeFile (inFile, name);
 			return message;
-
 		}
 		
 		else {	
 			return "Invalid Option";
 		}	
-		 
 	}
 	
 	private boolean searchFile (File inFile, String name) throws IOException {
@@ -59,14 +56,11 @@ public class User {
 					    sc.close();
 					    return true; // return Hello <user>
 			}
-		
 		}
-		
 		pWriter.close();
 		fWriter.close();
 		sc.close();
 		return false;
-		
 	}
 	
 	private String writeFile (File inFile, String name ) throws IOException {
