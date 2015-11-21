@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 
-// might rewrite a bunch of this and combine functions, lots of code repetition. 
-
 public class Audio extends Item {
 		protected String artistName;
 		protected LinkedList<Audio> audList;
 		
-		
+		/* This function reads information about an item based on its serial number from CD.txt or MP3.txt, 
+		 * depending on which file is given to it. It initializes a CD or MP3 object and sets each object
+		 * property (sNo, title, etc.) depending on what is in the file. */
+		 
 		public Audio getInfo(String filename, int serial) {
 			java.lang.String[] ar = {};
 			Audio listen = null;
@@ -89,7 +90,7 @@ public class Audio extends Item {
 			return this.price;
 		}
 		
-		public void getListInfo(String filename){ 		//changed the return type from int to string and ask prof
+		public void getListInfo(String filename){ 		
 			java.lang.String[] ar = {};
 			try {
 	            BufferedReader in = new BufferedReader(new FileReader(filename));
