@@ -1,3 +1,5 @@
+/* This class is an extension of the class Audio. It contains only one method, getPrice(), which overrides the parent method.*/
+
 public class CD extends Audio {
 	@Override
 	public double getPrice() { // override to get the item price and add 2% (Environment Tax)
