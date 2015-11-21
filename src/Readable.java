@@ -3,8 +3,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-
-// might rewrite a bunch of this and combine functions, lots of code repetition. 
+/* This class is an extension of the abstract class item. It inherits all object properties (sNo, title, price, quantity, itemtype) and the function getPrice().
+ * The class methods include:
+ *  getInfo, which initializes a Readable object with the specified serial number by checking the given file
+ *  getFileInfo, which initializes all items stored in a specified file and adds them to a linked list of Readable objects
+ *  getReadableList, which calls getFileInfo on Book.txt and eBook.txt. The result is a LinkedList of all Book and eBook objects.
+ *  getListInfo, which prints every item in the specified file to the console
+ *  printListInfo, prints a header for the list of Readable objects (sNo, Name, Artist, etc.), and then calls getListInfo to print information about every Book and eBook
+ *  getPrice, which overrides the method in the Item Class */
 
 public class Readable extends Item {
 		protected String authorName;
