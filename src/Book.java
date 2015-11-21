@@ -1,9 +1,9 @@
-/* This class is an extension of the abstract class item. */
+/* This class is an extension of the class Readables. It contains only one method, getPrice(), which overrides the parent method.*/
 
 public class Book extends Readable {
-		@Override  
-		public double getPrice() { // override to get the item price and add 2% (Environment Tax)
-			return 1.02*this.price;
+		@Override  // override getPrice() in Readables
+		public double getPrice() { 
+			return 1.02*this.price; // to get the item price, add 2% (Environment Tax), and return the price+tax
 		}
 		
 }
