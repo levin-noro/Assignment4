@@ -38,15 +38,6 @@ public class UserInterface{
 			
 		}
 		
-	
-		
-		//
-		
-		/* UserInterface ui = new UserInterface();
-
-			if(ui.getCurrentPage() == 1) {
-  			ui.changeCurrentPage(2) */
-
 		public int changeCurrentPage() throws IOException {// This method is for page navigation. It should change to current page and show the content.
 			boolean exitUI = false;
 			Scanner scanner = new Scanner(System.in);
@@ -62,7 +53,7 @@ public class UserInterface{
 			            int page = Integer.parseInt(scanner.next());
 			           	if (page == 1) {currentPage(3);}
 			        	if (page == 2) {currentPage(2);}
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        	
 			            
@@ -79,7 +70,7 @@ public class UserInterface{
 							e.printStackTrace();
 						}
 					   	currentPage(1);
-					   	break;
+					   	System.out.println("\n\n\n"); break;
 			        	
 			   
 			            
@@ -103,7 +94,7 @@ public class UserInterface{
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-			        	break;
+						System.out.println("\n\n\n"); break;
 			        	
 			        case 4:
 			        	
@@ -113,7 +104,7 @@ public class UserInterface{
 			        	if (op4 == 2) {currentPage(6);}
 			        	if (op4 == 3) {System.out.println("Signing you out."); exitUI = true; } // currentPage(1);
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 5:
 			        	
@@ -123,7 +114,7 @@ public class UserInterface{
 			        	if (option == 2) {currentPage(8);}
 			        	if (option == -1) {currentPage(4);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 6:
 			        	
@@ -134,7 +125,7 @@ public class UserInterface{
 			        	if (op == -1) {currentPage(4);}
 			        	if (op == 0) {currentPage(9);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 7:
 			        	Readable r = new Readable();
@@ -179,7 +170,7 @@ public class UserInterface{
 			        	if (op7 == -2) {currentPage(5);}
 			        	if (op7 == 0) {currentPage(9);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        	
 			        case 8:
@@ -220,13 +211,12 @@ public class UserInterface{
 			        	if (op8 == -2) {currentPage(5);}
 			        	if (op8 == 0) {currentPage(9);}
 			        	
-			        	break;
+			        	System.out.println("\n\n\n"); break;
 			        	
 			        case 9:
 			        	// checkout
 			        	// we need to check what happens if the person does not want to pay. do you sign out, or do you go back to a previous menu. 
 			        	// check how we're supposed to generate confirmation IDs, do we just increment the value by 1 (so the second user would get an ID of U1001)
-			        	System.out.println("Checkout!"); System.out.println();
 			        	
 			        	System.out.println("Billing Information:");
 			        	System.out.println(String.format("%-30s","Name")+String.format("%-20s", "Quantity") + String.format("%-20s","Price"));
@@ -290,17 +280,12 @@ public class UserInterface{
 				        		System.out.println("Please answer yes or no:");
 				        	}
 			        	}
-			        	break;
-			 
-			    }
-				
+			        	System.out.println("\n\n\n"); break;
+			    }	
 			}
 			while (exitUI == false);
 			scanner.close();
 			return 0;
-				            
-			   
-			
 		}
 }
 
