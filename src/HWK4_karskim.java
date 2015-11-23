@@ -1,3 +1,15 @@
+/*
+ * Name: Magdalena Karski, Alla Abramova, Levin Noronha
+ * MacID: karskim, abramova, noronl
+ * Student Number: 001436728, 
+ * Description: This program takes a user through a shopping environment that allows a user to 
+ * buy Books, eBooks, CDs, MP3s. The main program accesses the user interface. UserInterface contains methods that allows
+ * the user to navigate between different pages in the shopping environment. The ShoppingCart class allows users to modify contents
+ * of a shopping cart that is created for them when they sign into the system. Item is an abstract class that contains several properties that
+ * are shared classes that inherit from it and the method getPrice(). Readable class extends Item class and contains methods specific to 
+ * readable objects. Book and eBook inherit from Readable. Audio also inherits from Item. CD and MP3 extend Audio. 
+ * */
+
 import java.io.IOException;
 
 //We rewrote serial numbers to make them unique to each item as follow:
