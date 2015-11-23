@@ -74,7 +74,7 @@ public class Audio extends Item {
 	            in.close(); // close the BufferedReader
 		    } 
 			catch (IOException e) { // If the file cannot be read
-	            System.out.println("File Read Error"); // Tell the user that there was a gile read error
+	            System.out.println("File Read Error"); // Tell the user that there was a file read error
 	        } 
 			
 			return audio; // return the LinkedList, now containing Audio objects from the file
