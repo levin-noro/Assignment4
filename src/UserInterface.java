@@ -1,3 +1,10 @@
+/*
+ * Name: Magdalena Karski, Alla Abramova, Levin Noronha
+ * MacID: karskim, abramova, noronl
+ * Student Number: 001436728, 
+ * Description: The UserInterface class contains methods that allow the user to navigate between pages and to generate a confirmation ID when a sale is processed.   
+ * */
+
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +16,6 @@ import java.io.File;
 
 
 
-/* The UserInterface class contains methods that allow the user to navigate between pages and to generate a confirmation ID when a sale is processed*/
 public class UserInterface{
 		
 		private int currentPage; // the page number (P1...P10)
@@ -41,7 +47,7 @@ public class UserInterface{
 				String line; // declare a new string that will be assigned to the line in the file
 		
 					sc = new Scanner (file); // initialize the scanner to ItemsBought.txt
-					sc.nextLine(); // this skips first line in ItemsBought.txt containing useless header info
+					
 					while (sc.hasNextLine()) { // while the scanner is still reading lines in the file
 						
 							line = sc.nextLine(); // assign the next line in the file to line
