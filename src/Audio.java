@@ -1,16 +1,23 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
-
-/* This class is an extension of the abstract class item. It inherits all object properties (sNo, title, price, quantity, itemtype) and the function getPrice().
+/*
+ * Name: Magdalena Karski, Alla Abramova, Levin Noronha
+ * MacID: karskim, abramova, noronl
+ * Student Number: 001436728, 400039290, 001408964
+ * Description: This class is an extension of the abstract class item. It inherits all object properties (sNo, title, price, quantity, itemtype) and the function getPrice().
  * The class methods include:
  *  getInfo, which initializes an Audio object with the specified serial number by checking the given file
  *  getFileInfo, which initializes all items stored in a specified file and adds them to a linked list of Audio objects
  *  getAudioList, which calls getFileInfo on CD.txt and MP3.txt. The result is a LinkedList of all CD and MP3 objects.
  *  getListInfo, which prints every item in the specified file to the console
  *  printListInfo, prints a header for the list of audio objects (sNo, Name, Artist, etc.), and then calls getListInfo to print information about every CD and MP3
- *  getPrice, which overrides the method in the Item Class */
+ *  getPrice, which overrides the method in the Item Class 
+ * */
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedList;
+
+
 
 public class Audio extends Item { 
 		protected String artistName; // declares artistName as a protected string

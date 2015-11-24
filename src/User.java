@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-/* This class contains methods to manage new and existing users */
+/*
+ * Name: Magdalena Karski, Alla Abramova, Levin Noronha
+ * MacID: karskim, abramova, noronl
+ * Student Number: 001436728, 400039290, 001408964
+ * Description: This class contains methods to manage new and existing users.   
+ * */
 
 public class User {
 	String username; // each user's name is assigned to this string 
 	// create a class constructor that calls username
 	public User(String name) {this.username = name;} // class constructor, creates a new user, intializes the username to the string given to the constructor
 	
-	
+	public User() {};
 	public String getUsername(String name, int option) throws IOException { // checks if the username already exists, if not it stores the username 
 	// usernames of all registered users are stored in the file Users.txt
 		

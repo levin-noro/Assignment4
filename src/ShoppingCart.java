@@ -1,3 +1,12 @@
+/*
+ * Name: Magdalena Karski, Alla Abramova, Levin Noronha
+ * MacID: karskim, abramova, noronl
+ * Student Number: 001436728, 400039290, 001408964
+ * Description: This class is an extension the User class. There is a shopping file specific to the user and a LinkedList for the cart 
+ * for each Shoppingcart object. This class contains methods to show the contents of the shopping cart, to add items to it, and to modify the
+ * files that the items added to the cart were obtained from.   
+ * */
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,9 +30,8 @@ public class ShoppingCart extends User {
 		private File cartFile; // file that contains details about items (sNo, title, date purchased, quantity) that the user wants to purchase 
 		LinkedList<Item> cartList = new LinkedList<Item>(); // LinkedList of Items where items that the user wants to purchase will be stored
 		
-		
 		public ShoppingCart(User currUser) { // constructor for ShoppingCart class, takes a User object as input
-			super(currUser.username); // initializes username as the User's username
+			this.username = currUser.username; // initializes username as the User's username
 			
 			
 			try {

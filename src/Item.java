@@ -1,4 +1,13 @@
-// This abstract class Item is a base for subclasses Readable and Audio. 
+/*
+ * Name: Magdalena Karski, Alla Abramova, Levin Noronha
+ * MacID: karskim, abramova, noronl
+ * Student Number: 001436728, 400039290, 001408964
+ * Description: This abstract class Item is a base for subclasses Readable and Audio. 
+ * */
+
+
+
+ 
 
 public abstract class Item{
 	

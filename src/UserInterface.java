@@ -1,7 +1,7 @@
 /*
  * Name: Magdalena Karski, Alla Abramova, Levin Noronha
  * MacID: karskim, abramova, noronl
- * Student Number: 001436728, 
+ * Student Number: 001436728, 400039290, 001408964, 001408964
  * Description: The UserInterface class contains methods that allow the user to navigate between pages and to generate a confirmation ID when a sale is processed.   
  * */
 

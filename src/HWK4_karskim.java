@@ -1,7 +1,7 @@
 /*
  * Name: Magdalena Karski, Alla Abramova, Levin Noronha
  * MacID: karskim, abramova, noronl
- * Student Number: 001436728, 
+ * Student Number: 001436728, 400039290, 001408964
  * Description: This program takes a user through a shopping environment that allows a user to 
  * buy Books, eBooks, CDs, MP3s. The main program accesses the user interface. UserInterface contains methods that allows
  * the user to navigate between different pages in the shopping environment. The ShoppingCart class allows users to modify contents
