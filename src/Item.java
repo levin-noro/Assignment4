@@ -19,5 +19,6 @@ public abstract class Item{
 		protected String itemtype; // the type of the item (can be CD, MP3, Book, eBook)
 		public abstract double getPrice(); // gets the price of the item
 		
+		
 }
 	

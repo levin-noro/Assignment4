@@ -16,7 +16,7 @@ public class User {
 	// create a class constructor that calls username
 	public User(String name) {this.username = name;} // class constructor, creates a new user, intializes the username to the string given to the constructor
 	
-	public User() {};
+	public User() {}; // shoppingcart required an explicitly defined User constructor that does not take arguments
 	public String getUsername(String name, int option) throws IOException { // checks if the username already exists, if not it stores the username 
 	// usernames of all registered users are stored in the file Users.txt
 		
